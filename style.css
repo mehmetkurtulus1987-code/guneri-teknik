@@ -1225,6 +1225,17 @@ body.page-yedekparca {
    10. MOBİL UYUMLULUK
    ========================================================================== */
 @media (max-width: 768px) {
+   header nav ul {
+        display: flex;
+        flex-wrap: wrap; /* Sığmayan elemanları bir alt satıra atar */
+        justify-content: center; /* Elemanları ortalar */
+        padding: 0;
+    }
+
+    header nav ul li {
+        margin: 5px 10px; /* Elemanlar arası boşluğu mobilde daraltır */
+        font-size: 14px; /* Yazı boyutunu biraz küçültür ki daha çok şey sığsın */
+    }
     .menu {
         gap: 8px;
         font-size: 13px;
