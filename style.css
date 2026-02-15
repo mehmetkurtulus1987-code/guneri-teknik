@@ -73,17 +73,6 @@ header {
             display: inline-block; /* Yan yana durmalarını sağlar */
         }
 
-/* Mobilde yazı çok yer kaplarsa boyutu biraz küçültelim */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.2rem;
-        display: flex !important;
-    }
-
-        header h1 span {
-            margin-left: 5px;
-        }
-}
 
 
 .logo {
@@ -1236,6 +1225,17 @@ body.page-yedekparca {
         margin: 5px 10px; /* Elemanlar arası boşluğu mobilde daraltır */
         font-size: 14px; /* Yazı boyutunu biraz küçültür ki daha çok şey sığsın */
     }
+   
+    header h1 {
+        font-size: 1.2rem;
+        display: flex !important;
+    }
+
+        header h1 span {
+            margin-left: 5px;
+        }
+}
+
     .menu {
         gap: 8px;
         font-size: 13px;
