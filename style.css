@@ -1214,26 +1214,25 @@ body.page-yedekparca {
    10. MOBİL UYUMLULUK
    ========================================================================== */
 @media (max-width: 768px) {
-   header nav ul {
-        display: flex;
-        flex-wrap: wrap; /* Sığmayan elemanları bir alt satıra atar */
-        justify-content: center; /* Elemanları ortalar */
-        padding: 0;
+header nav ul {
+        display: flex; /* Yan yana dizilimi zorla */
+        flex-direction: row; /* Sütun değil satır yap */
+        flex-wrap: wrap; /* Sığmazsa bir alt satıra geçmesine izin ver */
+        justify-content: center; /* Menüyü ortala */
+        gap: 10px; /* Elemanlar arasına temiz bir boşluk bırak */
+        padding: 10px 0;
+        list-style: none;
     }
 
     header nav ul li {
-        margin: 5px 10px; /* Elemanlar arası boşluğu mobilde daraltır */
-        font-size: 14px; /* Yazı boyutunu biraz küçültür ki daha çok şey sığsın */
-    }
-   
-    header h1 {
-        font-size: 1.2rem;
-        display: flex !important;
+        margin: 0; /* Karmaşayı önlemek için dış boşlukları sıfırla */
     }
 
-        header h1 span {
-            margin-left: 5px;
-        }
+    header nav ul li a {
+        font-size: 13px; /* Yazıları biraz küçült ki daha çok sığsın */
+        white-space: nowrap; /* Kelimelerin alt alta bölünmesini engelle (örn: Ana Sayfa tek satır kalsın) */
+        padding: 5px 8px; /* Tıklama alanını koru ama daralt */
+    }
 }
 
     .menu {
