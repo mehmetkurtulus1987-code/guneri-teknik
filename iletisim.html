@@ -132,54 +132,7 @@
         </div>
     </main>
 
-    <script>
-        // 1. Servis seçildiğinde garanti alanını gösteren fonksiyon
-        function toggleWarrantyField() {
-            const service = document.getElementById('serviceSelect').value;
-            const warrantyGroup = document.getElementById('warrantyGroup');
-
-            // CSS üzerinden görünürlüğü kontrol ediyoruz
-            if (service === 'servis') {
-                warrantyGroup.style.display = 'block';
-            } else {
-                warrantyGroup.style.display = 'none';
-            }
-        }
-
-        // 2. Form Kontrol ve Gönderim Mantığı
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            const name = document.getElementById('nameInput').value;
-            const phone = document.getElementById('phoneInput').value;
-            const service = document.getElementById('serviceSelect').value;
-            const warranty = document.getElementById('warrantySelect').value;
-            const message = document.getElementById('messageInput').value;
-
-            // Başında 0 kontrolü
-            if (!phone.startsWith('0')) {
-                alert("Lütfen numaranızı başında '0' olacak şekilde 11 hane olarak giriniz.");
-                e.preventDefault();
-                return;
-            }
-
-            // Garantili Ürün Filtreleme Mantığı
-            if (service === 'servis' && warranty === 'evet') {
-                e.preventDefault(); // Formun gitmesini engelle
-
-                alert("Bilgi: Cihazınızın garantisi devam ettiği için lütfen ürününüzün markasına ait resmi çağrı merkezinden servis talebi oluşturun. Garantili işlemlerde Ana Merkez üzerinden kayıt açtırmanız gereklidir. Anlayışınız için teşekkürler.");
-
-                // Arka plan ön bilgisi (Log)
-                console.log("--- GARANTİLİ ÜRÜN BİLDİRİMİ ---");
-                console.log(`Ad Soyad: ${name}`);
-                console.log(`Tel. No: ${phone}`);
-                console.log(`Mesaj: ${message}`);
-                console.log("Durum: Garantili ürün servis talebi için çağrı merkezine yönlendirildi.");
-                console.log("--------------------------------");
-            } else {
-                // Standart Talep Gönderimi
-                alert("Talebiniz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.");
-            }
-        });
-    </script>
+    <script src="wwwroot/js/site.js"></script>
 
 </body>
 </html>
