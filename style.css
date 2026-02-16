@@ -1262,9 +1262,19 @@ header nav ul {
         color: #1a2a6c;
 
     }
+   .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 998; /* Menü listesinin (1000) bir tık altında, diğer her şeyin üstünde */
+        background: rgba(0,0,0,0); /* Tamamen şeffaf */
+    }
       /* Sihirli Dokunuş: Checkbox işaretlenince menüyü göster */
-    #menu-bar:checked ~ .menu {
-        max-height: 500px;
+    #menu-bar:checked ~ .menu-overlay {
+        display: block;
     }
 
     /* Diğer Mobil Ayarlar */
