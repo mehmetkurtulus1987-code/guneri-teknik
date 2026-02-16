@@ -142,7 +142,7 @@ header {
 
         /* Hover Durumu: Hem yazı rengi kayar hem çizgi uzar */
         .menu li a:hover, .menu li a.active { background-position: 0 0;    }
-        .menu li a:hover::after, .menu li a.active::after { width: 100%; /* Çizgi sağa doğru tam uzar * }
+        .menu li a:hover::after, .menu li a.active::after { width: 100%; /* Çizgi sağa doğru tam uzar */ }
                                                            
 /* ==========================================================================
    3. ANASAYFA ÖZEL (page-home)
@@ -1236,7 +1236,7 @@ header nav ul {
         width: 100%;
         background: #ffffff;
         flex-direction: column;
-        display: none !important;
+        display: none ;
         padding: 0;
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         z-index: 1000;
