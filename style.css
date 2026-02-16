@@ -10,13 +10,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-html, body {
-    height: 100%;
-}
+html {  scroll-behavior: smooth;}
+html, body {  height: 100%;    }
 
 body {
     display: flex;
@@ -107,7 +102,7 @@ header {
    /* --- MENÜ (MASAÜSTÜ) --- */
 .menu {
     list-style: none;
-    display: flex ; /* Masaüstünde her zaman görünür yap */
+    display: flex ; /* Masaüstünde yanyana */
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -146,15 +141,9 @@ header {
         }
 
         /* Hover Durumu: Hem yazı rengi kayar hem çizgi uzar */
-        .menu li a:hover,
-        .menu li a.active {
-            background-position: 0 0;
-        }
-
-            .menu li a:hover::after,
-            .menu li a.active::after {
-                width: 100%; /* Çizgi sağa doğru tam uzar */
-            }
+        .menu li a:hover, .menu li a.active { background-position: 0 0;    }
+        .menu li a:hover::after, .menu li a.active::after { width: 100%; /* Çizgi sağa doğru tam uzar * }
+                                                           
 /* ==========================================================================
    3. ANASAYFA ÖZEL (page-home)
    ========================================================================== */
@@ -202,8 +191,6 @@ header {
     .brand-logos img {
         height: 45px;
         width: auto;
-        opacity: 1; /* Opaklığı artırdık */
-        filter: none !important; /* Griliği kesin olarak kaldırdık */
         transition: 0.4s ease;
     }
 
@@ -446,23 +433,7 @@ body.page-hakkimizda {
         color: #f0610e;
         letter-spacing: 2px;
     }
-/* Mobil Ayarlar */
-@media (max-width: 600px) {
-    .timeline {
-        margin-left: 0;
-        padding-left: 20px;
-    }
 
-    .timeline-item .year {
-        position: static;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-
-    .header-stamp h1 {
-        font-size: 2.5rem;
-    }
-}
 /* ==========================================================================
    5. ÜRÜNLERİMİZ ÖZEL
    ========================================================================== */
@@ -520,12 +491,7 @@ body.page-urunlerimiz {
     margin: 0 5px;
     user-select: none;
 }
-/* Mobil için  */
-@media (max-width: 768px) {
-    .brand-logos img {
-        max-height: 35px; /* Mobilde logolar çok yer kaplamasın */
-    }
-}
+
 /* Her Bir Markanın Bölümü (Zebra Etkisi Yerine Şeffaf Katmanlar) */
 .product-group {
     padding: 60px 0;
@@ -1095,7 +1061,7 @@ body.page-yedekparca {
    8. FOOTER (TÜM SAYFALAR)
    ========================================================================== */
 .site-footer {
-    background: #1a2a6c; /* Koyu Lacivert */
+    background: #1a2a6c; 
     color: white;
     padding: 60px 0 20px 0;
     margin-top: auto;
@@ -1262,8 +1228,6 @@ header nav ul {
         white-space: nowrap; /* Kelimelerin alt alta bölünmesini engelle (örn: Ana Sayfa tek satır kalsın) */
         padding: 5px 8px; /* Tıklama alanını koru ama daralt */
     }
-}
-
     /* Menünün Mobilde Açılır Pencereye Dönüşmesi */
     .menu {
         position: absolute;
@@ -1272,11 +1236,12 @@ header nav ul {
         width: 100%;
         background: #ffffff;
         flex-direction: column;
-        display: none ; /* Başlangıçta gizle */
+        display: none !important;
         padding: 0;
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         z-index: 1000;
         border-top: 1px solid #eee;
+        gap: 0;
     }
 
     .menu li {
@@ -1296,55 +1261,21 @@ header nav ul {
     }
       /* Sihirli Dokunuş: Checkbox işaretlenince menüyü göster */
     #menu-bar:checked ~ .menu {
-        display: flex ;
+        display: flex !important ;
     }
 
     /* Diğer Mobil Ayarlar */
-    .hero h1 { font-size: 24px !important; }
+    header h1 { font-size: 1.1rem; }
+    .hero h1 { font-size: 28px !important; }
     .brand-logos img { height: 35px; }
     .contact-grid { grid-template-columns: 1fr; gap: 30px; }
-}
-
-
-
-    .hero h1 {
-        font-size: 28px !important;
-    }
-    .timeline {
-      margin-left: 0;
-      padding-left: 20px;
-    }
-    .timeline-item .year {
-       position: static;
-       display: inline-block;
-       margin-bottom: 10px;
-    }
-    .tercih-grid {
-        gap: 120px 20px;
-    }
-
-    .hakkimizda-content, .urunlerimiz-content {
-        padding: 30px;
-        margin: 15px;
-    }
-
-    .brand-logos img {
-        height: 35px;
-    }
-
-    .modal-dialog {
-        width: 95%;
-    }
-    .main-yedekparca {
-        margin-top: 80px !important;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-        padding: 30px 0;
-        gap: 30px;
-    }
-
-    .contact-main {
-        padding-top: 80px;
-    }
+    .timeline { margin-left: 0; padding-left: 20px; }
+    .timeline-item .year { position: static; display: inline-block; margin-bottom: 10px; }
+    .tercih-grid { gap: 120px 20px; }
+    .hakkimizda-content, .urunlerimiz-content { padding: 30px; margin: 15px;}
+    .brand-logos img { height: 35px; }
+    .modal-dialog { width: 95%; }
+    .main-yedekparca { margin-top: 80px !important; }
+    .contact-grid { grid-template-columns: 1fr; padding: 30px 0; gap: 30px;  }
+    .contact-main { padding-top: 80px;}
 }
