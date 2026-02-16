@@ -107,7 +107,7 @@ header nav {
    /* --- MENÜ (MASAÜSTÜ) --- */
 .menu {
     list-style: none;
-    display: flex;
+    display: flex !important; /* Masaüstünde her zaman görünür yap */
     justify-content: center;
     align-items: center;
     gap: 15px;
