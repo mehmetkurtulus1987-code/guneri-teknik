@@ -323,6 +323,8 @@ header {
 body.page-hakkimizda {
     background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9)), url('img/christmas-wallpaper.jpg') no-repeat center center fixed;
     background-size: cover;
+    background-position: center, center;
+    background-attachment: fixed;
     font-family: 'Georgia', serif; /* Daha klasik bir yazı tipi */
     color: #333;
 }
