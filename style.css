@@ -1271,7 +1271,7 @@ header nav ul {
         width: 100%;
         background: #ffffff;
         flex-direction: column;
-        display: none; /* Başlangıçta gizle */
+        display: none !important; /* Başlangıçta gizle */
         padding: 0;
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         z-index: 1000;
