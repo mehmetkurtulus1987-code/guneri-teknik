@@ -127,14 +127,4 @@ const modal = document.getElementById("kvkkModal");
                 alert("Talebiniz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.");
             }
         });
-        document.addEventListener('pointerdown', function(event) {
-    var menuBar = document.getElementById('menu-bar');
-    var nav = document.querySelector('.nav-container'); // Menü ve ikonları kapsayan iç kutu
-
-    // Eğer menü açıksa VE tıklanan yer nav-container değilse VE tıklanan yer ikon değilse
-    if (menuBar && menuBar.checked) {
-        if (nav && !nav.contains(event.target)) {
-            menuBar.checked = false;
-        }
-    }
-});
+        
