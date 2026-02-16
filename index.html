@@ -166,27 +166,6 @@
         </div>
     </dialog>
 
-    <script>
-        const modal = document.getElementById("kvkkModal");
-
-        function openKvkk() {
-            // showModal() metodu dialog etiketini en üst katmanda açar
-            modal.showModal();
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeKvkk() {
-            modal.close();
-            document.body.style.overflow = "auto";
-        }
-
-        // Dialog dışına tıklandığında kapatma mantığı
-        modal.addEventListener("click", (event) => {
-            if (event.target === modal) {
-                closeKvkk();
-            }
-        });
-    </script>
-
+    
 </body>
 </html>
