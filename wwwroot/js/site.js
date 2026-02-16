@@ -127,3 +127,11 @@ const modal = document.getElementById("kvkkModal");
                 alert("Talebiniz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.");
             }
         });
+        document.addEventListener('click', function(event) {
+    var menuBar = document.getElementById('menu-bar');
+    var nav = document.querySelector('header');
+
+    if (menuBar && nav && !nav.contains(event.target) && menuBar.checked) {
+        menuBar.checked = false;
+    }
+});
