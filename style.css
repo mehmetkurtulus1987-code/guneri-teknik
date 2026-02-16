@@ -215,7 +215,7 @@ header {
 }
 /* --- Tercih Kartları --- */
 .tercih {
-    padding: 60px 0 120px 0; /* Alt boşluğu yazıların taşması için artırdık */
+    padding: 20px 0 105px 0; 
     background-color: #f8fafd;
     text-align: center;
 }
@@ -224,7 +224,7 @@ header {
 .tercih-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 100px 30px; /* Dikeyde yazıların sığması için 80px boşluk */
+    gap: 100px 30px; 
     margin-top: 40px;
 }
 
@@ -437,7 +437,6 @@ body.page-hakkimizda {
 /* ==========================================================================
    5. ÜRÜNLERİMİZ ÖZEL
    ========================================================================== */
-/* Sayfa Genel Arka Planı (Hakkımızda ile Tam Uyumlu) */
 body.page-urunlerimiz {
     background: #f4f7f9;
     margin: 0;
@@ -446,7 +445,7 @@ body.page-urunlerimiz {
 
 .page-urunlerimiz main {
     display: block;
-    padding-top: 100px; /* Header'dan kurtulmak için */
+    padding-top: 0; 
 }
 /* Üst Başlık (Degrade Efekti Korundu, Otantik Dokunuş Eklendi) */
 .brands-urunlerimiz h2 {
@@ -456,7 +455,7 @@ body.page-urunlerimiz {
     font-family: 'Georgia', serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     background: none;
     -webkit-text-fill-color: initial;
     text-shadow: none;
@@ -468,11 +467,11 @@ body.page-urunlerimiz {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 10px;
 }
     /* Logo Dizilimi İçin Grilik Tamamen Kaldırıldı */
     .brand-logos img {
-        max-height: 45px;
+        max-height: 25px;
         width: auto;
         filter: none !important; /* Buradaki grayscale(100%) kaldırıldı */
         opacity: 1; /* Opaklık tam yapıldı */
@@ -494,7 +493,7 @@ body.page-urunlerimiz {
 
 /* Her Bir Markanın Bölümü (Zebra Etkisi Yerine Şeffaf Katmanlar) */
 .product-group {
-    padding: 60px 0;
+    padding: 30px 0;
     border-bottom: 1px solid #eee;
 }
     /* Zebra Etkisi Yerine Koyu/Açık Geçişi */
@@ -1288,7 +1287,7 @@ body.page-yedekparca {
     .timeline { margin-left: 0; padding-left: 20px; }
     .timeline-item .year { position: static; display: inline-block; margin-bottom: 10px; }
     .tercih { padding: 40px 0 80px 0; }
-    .tercih-grid { display: flex; flex-direction: column; align-items: center; gap: 130px; gmargin-top: 50px; padding-bottom: 50px; }
+    .tercih-grid { display: flex; flex-direction: column; align-items: center; gap: 130px; margin-top: 50px; padding-bottom: 50px; }
     .tercih-card { width: 140px; height: 140px; margin: 0 auto; position: relative;}
     .tercih-card .icon { font-size: 1.8rem; }
     .tercih-card .step-label { font-size: 0.6rem; padding: 2px 8px; bottom: 5px; }
