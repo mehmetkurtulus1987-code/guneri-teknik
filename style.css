@@ -1197,8 +1197,8 @@ body.page-yedekparca {
    ========================================================================== */
 @media (max-width: 768px) {
    .hamburger-icon {
-        display: block; /* Sadece mobilde görünür */
-        font-size: 28px;
+        position: relative;
+        z-index: 1001;
         cursor: pointer;
     }
    .site-logo {
@@ -1269,8 +1269,8 @@ header nav ul {
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 998; /* Menü listesinin (1000) bir tık altında, diğer her şeyin üstünde */
-        background: rgba(0,0,0,0); /* Tamamen şeffaf */
+        z-index: 99; 
+        background: rgba(0,0,0,0); 
     }
       /* Sihirli Dokunuş: Checkbox işaretlenince menüyü göster */
     #menu-bar:checked ~ .menu-overlay {
