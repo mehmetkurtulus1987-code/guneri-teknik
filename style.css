@@ -1295,7 +1295,7 @@ header nav ul {
     }
       /* Sihirli Dokunuş: Checkbox işaretlenince menüyü göster */
     #menu-bar:checked ~ .menu {
-        display: flex !important;
+        display: flex ;
     }
 
     /* Diğer Mobil Ayarlar */
