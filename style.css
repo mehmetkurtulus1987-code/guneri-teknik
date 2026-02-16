@@ -321,7 +321,7 @@ header {
    ========================================================================== */
 /* Arka Planı Aydınlık ve Yumuşak Yapalım */
 body.page-hakkimizda {
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/img/tasarruf.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('img/christmas-wallpaper.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Georgia', serif; /* Daha klasik bir yazı tipi */
     color: #333;
