@@ -1216,17 +1216,21 @@ body.page-yedekparca {
     .menu {
         position: absolute;
         top: 100%;
-        left: 0;
-        width: 100%;
+        margin-top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
         background: #ffffff;
         flex-direction: column !important; /* Alt alta diz */
         display: flex !important; 
         max-height: 0; /* Başlangıçta kapalı */
+        max-width: 300px;
         overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         z-index: 1500;
+        border-radius: 12px;
         border-top: 1px solid #eee;
         list-style: none;
     }
@@ -1239,12 +1243,17 @@ body.page-yedekparca {
 
     .menu li a {
         display: block;
-        padding: 15px;
-        font-size: 16px;
+        padding: 12px 15px;
+        font-size: 14px;
         color: #1a2a6c !important;
         background: none !important;
+        text-align: center;
+        border-bottom: 1px solid #f9f9f9;
+        font-weight: 500;
         -webkit-text-fill-color: initial !important;
     }
+   .menu li:last-child a { border-bottom: none;}
+   
 
     /* 4. DIŞARI TIKLAYINCA KAPATMA (Overlay) */
     .menu-overlay {
@@ -1260,7 +1269,8 @@ body.page-yedekparca {
 
     /* 5. SİHİRLİ TETİKLEYİCİLER (Checkbox Check Edilince) */
     #menu-bar:checked ~ .menu {
-        max-height: 500px; /* Menüyü aç */
+        max-height: 400px; /* Menüyü aç */
+        padding: 10px 0;
     }
 
     #menu-bar:checked ~ .menu-overlay {
