@@ -95,11 +95,11 @@ function toggleFields() {
         "Hexel": "0850 444 55 66"
     };
 
+    // 1. Durum: Teknik Servis Seçilirse (Hem Marka Hem Garanti Sor)
     if (service === 'servis') {
         warrantyGroup.style.display = 'block';
         brandGroup.style.display = 'block';
         
-        // Garanti "Evet" ise ve marka seçilmişse uyarını göster, butonu gizle
         if (warranty === 'evet' && brand !== "") {
             const numara = markalar[brand] || "Marka Merkezi";
             document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır.`;
@@ -111,7 +111,16 @@ function toggleFields() {
             warrantyAlert.style.display = 'none';
             submitBtn.style.display = 'block';
         }
-    } else {
+    } 
+    // 2. Durum: Yıllık Bakım Seçilirse (Sadece Marka Sor, Garanti Engeli Çıkarma)
+    else if (service === 'bakim') {
+        brandGroup.style.display = 'block';
+        warrantyGroup.style.display = 'none'; // Bakımda garanti sorgusunu gizle
+        warrantyAlert.style.display = 'none';
+        submitBtn.style.display = 'block';
+    }
+    // 3. Durum: Diğer (Yedek parça vs. - Her şeyi gizle)
+    else {
         warrantyGroup.style.display = 'none';
         brandGroup.style.display = 'none';
         warrantyAlert.style.display = 'none';
