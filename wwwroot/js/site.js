@@ -99,46 +99,49 @@ function toggleFields() {
     };
 
     // Temizlik
-    warrantyGroup.style.display = 'none';
-    brandGroup.style.display = 'none';
-    manualBrandGroup.style.display = 'none';
-    warrantyAlert.style.display = 'none';
-    submitBtn.style.display = 'block';
+    if (warrantyGroup) warrantyGroup.style.display = 'none';
+    if (brandGroup) brandGroup.style.display = 'none';
+    if (manualBrandGroup) manualBrandGroup.style.display = 'none';
+    if (warrantyAlert) warrantyAlert.style.display = 'none';
+    if (submitBtn) submitBtn.style.display = 'block';
 
     // DURUM 1: Teknik Servis
     if (service === 'servis') {
-        brandGroup.style.display = 'block';
-        warrantyGroup.style.display = 'block';
-        otherOption.style.display = 'none'; // Yetkili servis değilsek arızaya bakmıyoruz
+        if (brandGroup) brandGroup.style.display = 'block';
+        if (warrantyGroup) warrantyGroup.style.display = 'block';
+        if (otherOption) otherOption.style.display = 'none'; // Serviste "Diğer" kapalı
 
-        if (brand === 'Diger') brandSelectElement.value = ""; // Eğer daha önce seçiliyse sıfırla
+        if (brand === 'Diger') brandSelectElement.value = ""; 
 
         if (warranty === 'evet' && brand !== "" && brand !== "Diger") {
             const numara = markalar[brand] || "marka çağrı merkezini";
             document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir.`;
             document.getElementById('callCenterBtn').href = "tel:" + numara.replace(/\s/g, '');
-            warrantyAlert.style.display = 'block';
-            submitBtn.style.display = 'none';
+            if (warrantyAlert) warrantyAlert.style.display = 'block';
+            if (submitBtn) submitBtn.style.display = 'none';
         }
     } 
     // DURUM 2: Yıllık Bakım
     else if (service === 'bakim') {
-        brandGroup.style.display = 'block';
-        otherOption.style.display = 'block'; // Bakımda her markaya bakabiliriz
+        if (brandGroup) brandGroup.style.display = 'block';
+        if (otherOption) otherOption.style.display = 'block'; // Bakımda "Diğer" açık
 
         if (brand === 'Diger') {
-            manualBrandGroup.style.display = 'block';
+            if (manualBrandGroup) manualBrandGroup.style.display = 'block';
         }
     }
 }
-// Event Dinleyicileri (Sayfa yüklendiğinde elemanlar varsa bağla)
+
+// Event Dinleyicileri
 window.addEventListener('DOMContentLoaded', () => {
     const wSelect = document.getElementById('warrantySelect');
     const bSelect = document.getElementById('brandSelect');
+    const sSelect = document.getElementById('serviceSelect');
     const cForm = document.getElementById('contactForm');
 
     if (wSelect) wSelect.addEventListener('change', toggleFields);
     if (bSelect) bSelect.addEventListener('change', toggleFields);
+    if (sSelect) sSelect.addEventListener('change', toggleFields);
 
     // 2. Form Kontrol ve Gönderim Mantığı
     if (cForm) {
@@ -149,8 +152,18 @@ window.addEventListener('DOMContentLoaded', () => {
             const phone = document.getElementById('phoneInput').value;
             const service = document.getElementById('serviceSelect').value;
             const warranty = document.getElementById('warrantySelect').value;
-            const brand = document.getElementById('brandSelect') ? document.getElementById('brandSelect').value : "Belirtilmedi";
             const message = document.getElementById('messageInput').value;
+            
+            // MARKA BELİRLEME (finalBrand Mantığı)
+            let brandVal = document.getElementById('brandSelect').value;
+            let finalBrand = brandVal;
+            
+            if (brandVal === "Diger") {
+                const manualVal = document.getElementById('manualBrandInput').value;
+                finalBrand = manualVal ? "Diğer (" + manualVal + ")" : "Diğer (Belirtilmedi)";
+            } else if (!brandVal) {
+                finalBrand = "Belirtilmedi";
+            }
 
             const markalar = {
                 "Maktek": "0850 441 42 00",
@@ -165,8 +178,8 @@ window.addEventListener('DOMContentLoaded', () => {
             }
 
             if (service === 'servis' && warranty === 'evet') {
-                const numara = markalar[brand] || "marka çağrı merkezini";
-                alert(`Bilgi: ${brand} yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır. Yıllık bakım yaptırmak için telefon ya da Whatsap üzerinden direkt irtibat kurabilirsiniz.`);
+                const numara = markalar[finalBrand] || "marka çağrı merkezini";
+                alert(`Bilgi: ${finalBrand} yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır. Yıllık bakım yaptırmak için telefon ya da Whatsap üzerinden direkt irtibat kurabilirsiniz.`);
                 return;
             }
 
@@ -174,7 +187,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const metin = `*Güneri Teknik Web Talebi*%0A` +
                           `*Müşteri:* ${name}%0A` +
                           `*Tel:* ${phone}%0A` +
-                          `*Cihaz/Marka:* ${brand}%0A` +
+                          `*Cihaz/Marka:* ${finalBrand}%0A` +
                           `*Hizmet:* ${service}%0A` +
                           `*Mesaj:* ${message}`;
 
