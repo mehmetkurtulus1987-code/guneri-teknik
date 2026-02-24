@@ -46,9 +46,17 @@ function filterCategory(category) {
 
 // 2. Arama Fonksiyonu
 function searchParts() {
-    let input = document.getElementById('partSearch').value.toLocaleLowerCase('tr-TR');
+    let inputElement = document.getElementById('partSearch');
+    let clearBtn = document.getElementById('clearSearch');
+    let input = inputElement.value.toLocaleLowerCase('tr-TR');
     let items = document.getElementsByClassName('part-item');
 
+    // "X" butonunun görünürlüğünü kontrol et
+    if (clearBtn) {
+        clearBtn.style.display = (input.length > 0) ? "block" : "none";
+    }
+
+    // Parçaları filtrele
     for (let i = 0; i < items.length; i++) {
         let title = items[i].getElementsByTagName('h3')[0].innerText.toLocaleLowerCase('tr-TR');
         let brands = items[i].getElementsByClassName('compatible-brands')[0].innerText.toLocaleLowerCase('tr-TR');
@@ -62,6 +70,14 @@ function searchParts() {
     
     // Arama sonrası boş kalan başlıkları gizle
     updateCategoryVisibility();
+}
+
+// Yeni: "X" butonuna basıldığında kutuyu temizleyen fonksiyon
+function clearInput() {
+    let inputElement = document.getElementById('partSearch');
+    inputElement.value = ""; // Yazıyı sil
+    searchParts(); // Tüm parçaları tekrar göster ve kategorileri güncelle
+    inputElement.focus(); // İmleci kutuda tut
 }
 
 // 3. Yardımcı Fonksiyon: Boş Kategorileri Yönetir
