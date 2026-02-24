@@ -725,6 +725,23 @@ body.page-yedekparca {
     color: #888;
     font-size: 0.8rem;
 }
+#partSearch {
+    padding-right: 40px; /* "x" işareti için sağda yer açalım */
+}
+#clearSearch {
+    position: absolute;
+    right: 60px; /* Büyüteç butonunun hemen solunda dursun */
+    cursor: pointer;
+    font-size: 22px;
+    color: #999;
+    display: none; /* Başlangıçta gizli */
+    user-select: none;
+    transition: color 0.2s;
+}
+
+#clearSearch:hover {
+    color: #333;
+}
 /* Hero Alanı */
 .part-hero {
     background: #f0f4f8;
