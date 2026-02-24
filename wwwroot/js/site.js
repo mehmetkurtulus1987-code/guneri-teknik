@@ -80,17 +80,48 @@ function searchParts() {
 // 1. Servis seçildiğinde garanti ve marka alanlarını gösteren fonksiyon
 function toggleFields() {
     const service = document.getElementById('serviceSelect').value;
+    const warranty = document.getElementById('warrantySelect').value;
+    const brand = document.getElementById('brandSelect').value;
+    
     const warrantyGroup = document.getElementById('warrantyGroup');
     const brandGroup = document.getElementById('brandGroup');
+    const warrantyAlert = document.getElementById('warrantyAlert');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const markalar = {
+        "Maktek": "444 44 44",
+        "Sanica": "0850 111 22 33",
+        "Ariston": "444 1 588",
+        "Hexel": "0850 444 55 66"
+    };
 
     if (service === 'servis') {
-        if (warrantyGroup) warrantyGroup.style.display = 'block';
-        if (brandGroup) brandGroup.style.display = 'block';
+        warrantyGroup.style.display = 'block';
+        brandGroup.style.display = 'block';
+        
+        // Garanti "Evet" ise ve marka seçilmişse uyarını göster, butonu gizle
+        if (warranty === 'evet' && brand !== "") {
+            const numara = markalar[brand] || "Marka Merkezi";
+            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır.`;
+            document.getElementById('callCenterBtn').href = "tel:" + numara.replace(/\s/g, '');
+            
+            warrantyAlert.style.display = 'block';
+            submitBtn.style.display = 'none';
+        } else {
+            warrantyAlert.style.display = 'none';
+            submitBtn.style.display = 'block';
+        }
     } else {
-        if (warrantyGroup) warrantyGroup.style.display = 'none';
-        if (brandGroup) brandGroup.style.display = 'none';
+        warrantyGroup.style.display = 'none';
+        brandGroup.style.display = 'none';
+        warrantyAlert.style.display = 'none';
+        submitBtn.style.display = 'block';
     }
 }
+
+// Seçimler değiştikçe fonksiyonu tetikleyen dinleyicileri eklemeyi unutma
+document.getElementById('warrantySelect').addEventListener('change', toggleFields);
+document.getElementById('brandSelect').addEventListener('change', toggleFields);
 
 // 2. Form Kontrol ve Gönderim Mantığı
 const contactForm = document.getElementById('contactForm');
