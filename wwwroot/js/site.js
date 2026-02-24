@@ -54,22 +54,30 @@ function updateCategoryVisibility() {
     }
 }
 
-// --- 4. İLETİŞİM SAYFASI MANTIĞI (MARKA / GARANTİ SEÇİMİ) ---
+// --- 4. İLETİŞİM SAYFASI MANTIĞI (GÜNCELLENMİŞ: SERVİS/BAKIM AYRIMI) ---
 function toggleFields() {
-    const service = document.getElementById('serviceSelect')?.value;
-    const warranty = document.getElementById('warrantySelect')?.value;
-    const brand = document.getElementById('brandSelect')?.value;
-    const brandSelectElement = document.getElementById('brandSelect');
+    const serviceSelect = document.getElementById('serviceSelect');
+    const brandSelect = document.getElementById('brandSelect');
+    const warrantySelect = document.getElementById('warrantySelect');
+    
+    if (!serviceSelect || !brandSelect) return;
+
+    const service = serviceSelect.value;
+    const brand = brandSelect.value;
+    const warranty = warrantySelect?.value;
 
     const warrantyGroup = document.getElementById('warrantyGroup');
     const brandGroup = document.getElementById('brandGroup');
     const manualBrandGroup = document.getElementById('manualBrandGroup');
     const warrantyAlert = document.getElementById('warrantyAlert');
     const submitBtn = document.getElementById('submitBtn');
-    const otherOption = document.getElementById('otherBrandOption');
+    
+    // "Diğer" seçeneğini bul
+    const otherOption = brandSelect.querySelector('option[value="Diger"]');
 
     const markalar = { "Maktek": "0850 441 42 00", "Sanica": "0850 460 66 88", "Ariston": "444 92 31", "Hexel": "0850 346 29 29" };
 
+    // Başlangıç Ayarları
     if (warrantyGroup) warrantyGroup.style.display = 'none';
     if (brandGroup) brandGroup.style.display = 'none';
     if (manualBrandGroup) manualBrandGroup.style.display = 'none';
@@ -77,23 +85,38 @@ function toggleFields() {
     if (submitBtn) submitBtn.style.display = 'block';
 
     if (service === 'servis') {
+        // Teknik Servis: Diğer seçeneğini GİZLE
+        if (otherOption) otherOption.style.display = 'none';
         if (brandGroup) brandGroup.style.display = 'block';
         if (warrantyGroup) warrantyGroup.style.display = 'block';
-        if (brand === 'Diger') brandSelectElement.value = "";
+        
+        // Eğer kullanıcı daha önce Diğer'i seçtiyse temizle
+        if (brand === 'Diger') brandSelect.value = "";
+
+        // Garanti Kontrolü
         if (warranty === 'evet' && brand && brand !== "Diger") {
             const numara = markalar[brand] || "çağrı merkezini";
-            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir.`;
-            document.getElementById('callCenterBtn').href = "tel:" + numara.replace(/\s/g, '');
+            const alertMsg = document.getElementById('alertMessage');
+            if (alertMsg) alertMsg.innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir.`;
+            const callBtn = document.getElementById('callCenterBtn');
+            if (callBtn) callBtn.href = "tel:" + numara.replace(/\s/g, '');
+            
             if (warrantyAlert) warrantyAlert.style.display = 'block';
             if (submitBtn) submitBtn.style.display = 'none';
         }
     } else if (service === 'bakim') {
+        // Bakım: Diğer seçeneğini GÖSTER
+        if (otherOption) otherOption.style.display = 'block';
         if (brandGroup) brandGroup.style.display = 'block';
-        if (brand === 'Diger' && manualBrandGroup) manualBrandGroup.style.display = 'block';
+        
+        // Diğer seçildiyse manuel giriş kutusunu göster
+        if (brand === 'Diger' && manualBrandGroup) {
+            manualBrandGroup.style.display = 'block';
+        }
     }
 }
 
-// --- 5. LIGHTBOX (GÖRSEL BÜYÜTME) ---
+// --- 5. LIGHTBOX (GÖRSEL BÜYÜTME - MOBİL UYUMLU) ---
 function openLightbox(src, title) {
     const lb = document.getElementById('imageModal');
     const lbImg = document.getElementById('imgFull');
@@ -103,6 +126,8 @@ function openLightbox(src, title) {
         lb.style.display = "flex";
         lbImg.src = src;
         if (lbCap) lbCap.innerText = title;
+        
+        // Arka planın kaymasını engelle
         document.body.style.position = 'fixed';
         document.body.style.top = `-${scrollY}px`;
         document.body.style.width = '100%';
@@ -123,8 +148,8 @@ function closeLightbox() {
 
 // --- 6. SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
 document.addEventListener('DOMContentLoaded', () => {
-    // İletişim Formu Dinleyicileri
-    ['warrantySelect', 'brandSelect', 'serviceSelect'].forEach(id => {
+    // Form Dinleyicilerini Bağla
+    ['serviceSelect', 'brandSelect', 'warrantySelect'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', toggleFields);
     });
 
@@ -134,27 +159,39 @@ document.addEventListener('DOMContentLoaded', () => {
         cForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const phone = document.getElementById('phoneInput').value;
-            if (!phone.startsWith('0') || phone.length !== 11) { alert("Numaranızı 0 ile başlayan 11 hane olarak giriniz."); return; }
-            const metin = `*Güneri Teknik Web Talebi*%0A*Müşteri:* ${document.getElementById('nameInput').value}%0A*Tel:* ${phone}%0A*Cihaz:* ${document.getElementById('brandSelect').value}%0A*Hizmet:* ${document.getElementById('serviceSelect').value}%0A*Mesaj:* ${document.getElementById('messageInput').value}`;
+            if (!phone.startsWith('0') || phone.length !== 11) { 
+                alert("Numaranızı 0 ile başlayan 11 hane olarak giriniz."); 
+                return; 
+            }
+            
+            let selectedBrand = document.getElementById('brandSelect').value;
+            if (selectedBrand === "Diger") {
+                selectedBrand = document.getElementById('manualBrandInput')?.value || "Diğer";
+            }
+
+            const metin = `*Güneri Teknik Web Talebi*%0A*Müşteri:* ${document.getElementById('nameInput').value}%0A*Tel:* ${phone}%0A*Cihaz:* ${selectedBrand}%0A*Hizmet:* ${document.getElementById('serviceSelect').value}%0A*Mesaj:* ${document.getElementById('messageInput').value}`;
             window.open(`https://wa.me/905060357883?text=${metin}`, '_blank');
         });
     }
 
-    // Yedek Parça Butonları & Lightbox
+    // Yedek Parça Sipariş Butonları
     document.querySelectorAll('.order-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const partName = this.parentElement.querySelector('h3').innerText;
-            this.href = `https://wa.me/905376183344?text=${encodeURIComponent('Merhaba, *' + partName + '* için fiyat alabilir miyim?')}`;
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const partName = this.closest('.part-item').querySelector('h3').innerText;
+            const targetUrl = `https://wa.me/905376183344?text=${encodeURIComponent('Merhaba, *' + partName + '* için fiyat alabilir miyim?')}`;
+            window.open(targetUrl, '_blank');
         });
     });
 
+    // Resimlere Tıklayınca Lightbox Aç
     document.querySelectorAll('.part-img img').forEach(img => {
         img.addEventListener('click', function(e) {
-            e.stopPropagation();
             const title = this.closest('.part-item').querySelector('h3').innerText;
             openLightbox(this.src, title);
         });
     });
 
+    // Kapatma tuşları
     document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeLightbox(); });
 });
