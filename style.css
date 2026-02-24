@@ -170,6 +170,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+   -webkit-overflow-scrolling: touch;
 }
 
 
@@ -848,23 +849,26 @@ body.page-yedekparca {
 /* Lightbox Arka Planı */
 .img-lightbox {
     display: none;
-    position: fixed !important; /* Her zaman ekranın en üstünde sabit kal */
+    position: fixed !important; 
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 99999;
     background-color: rgba(0, 0, 0, 0.95);
     justify-content: center;
     align-items: center;
-    -webkit-overflow-scrolling: touch; /* iOS için akıcılık */
+    flex-direction: column;
+    touch-action: none; 
 }
 
 /* Büyütülen Resim */
 .lightbox-content {
     max-width: 90%;
-    max-height: 80vh;
+    max-height: 70vh; 
     object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 
 /* Kapatma Butonu */
@@ -1304,7 +1308,12 @@ body.page-yedekparca {
 /* ==========================================================================
    10. MOBİL UYUMLULUK
    ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+   page-home .hero {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
     /* 1. Hamburger İkonunu Görünür Yap */
     .hamburger-icon {
         display: block !important;
