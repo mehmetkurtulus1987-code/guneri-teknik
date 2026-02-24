@@ -234,15 +234,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('imgFull');
     const captionText = document.getElementById('caption');
 
-    if (images && lightbox) {
-        images.forEach(img => {
-            img.addEventListener('click', function () {
-                lightbox.style.display = "block";
-                lightboxImg.src = this.src;
-                const title = this.closest('.part-item').querySelector('h3').innerText;
-                if (captionText) captionText.innerHTML = title;
-                document.body.style.overflow = "hidden";
-            });
-        });
-    }
+    event.stopPropagation()
 });
