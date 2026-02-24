@@ -6,6 +6,10 @@
     <title>İletişim | Güneri Teknik</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Başlangıçta gizli olması gereken alanlar */
+        .warranty-group, .brand-group { display: none; }
+    </style>
 </head>
 <body class="page-iletisim">
     
@@ -15,11 +19,6 @@
             <img src="img/Logo/guneri-teknik-logo.png" alt="Güneri Teknik Logo" class="site-logo">
             <h1>GÜNERİ <span>TEKNİK</span></h1>
         </a>
-
-        <input type="checkbox" id="menu-bar">
-        <label for="menu-bar" class="hamburger-icon">☰</label>
-        <label for="menu-bar" class="menu-overlay"></label>
-
         <ul class="menu">
             <li><a href="index.html">Anasayfa</a></li>
             <li><a href="hakkimizda.html">Hakkımızda</a></li>
@@ -30,110 +29,61 @@
     </nav>
 </header>
 
-    <main class="contact-main">
-        <div class="container">
-            <div class="contact-grid">
-
-                <div class="contact-info">
-                    <h2>Bize Ulaşın</h2>
-                    <p>Sorularınız ve teknik destek talepleriniz için yanınızdayız.</p>
-
-                    <div class="info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <span>Telefon</span>
-                            <a href="tel:+905376183344">0537 618 33 44</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <span>WhatsApp Hattı</span>
-                            <a href="https://wa.me/905376183344">Mesaj Gönder</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <span>Hizmet Bölgelerimiz</span>
-                            <p>Menemen, Foça, Aliağa / İzmir</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <span>Çalışma Saatleri</span>
-                            <p>Pazartesi - Cumartesi: 08:00 - 20:00</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-directions"></i>
-                        <div>
-                            <span>Adresimiz</span>
-                            <a href="https://tinyurl.com/Guneriteknik"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                Esatpaşa,1. Abdi İpekçi Cd. No:15, 35660 Menemen/İzmir
-                            </a>
-                        </div>
-                    </div>
+<main class="contact-main">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Bize Ulaşın</h2>
+                <div class="info-item"><i class="fas fa-phone-alt"></i><div><span>Telefon</span><a href="tel:+905376183344">0537 618 33 44</a></div></div>
+                <div class="info-item"><i class="fab fa-whatsapp"></i><div><span>WhatsApp</span><a href="https://wa.me/905376183344">Mesaj Gönder</a></div></div>
                 </div>
 
-                <div class="contact-form-wrapper">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="nameInput" placeholder="Adınız Soyadınız" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel"
-                                   id="phoneInput"
-                                   placeholder="Telefon Numaranız (05xxxxxxxxx)"
-                                   pattern="[0-9]{11}"
-                                   maxlength="11"
-                                   minlength="11"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <select id="serviceSelect" required onchange="toggleWarrantyField()">
-                                <option value="" disabled selected>Hizmet Seçiniz</option>
-                                <option value="yedekparca">Yedek Parça Talebi</option>
-                                <option value="servis">Teknik Servis Randevusu</option>
-                                <option value="diger">Diğer</option>
-                            </select>
-                        </div>
+            <div class="contact-form-wrapper">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="nameInput" placeholder="Adınız Soyadınız" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phoneInput" placeholder="Telefon (05xxxxxxxxx)" pattern="[0-9]{11}" maxlength="11" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="serviceSelect" required onchange="toggleFields()">
+                            <option value="" disabled selected>Hizmet Seçiniz</option>
+                            <option value="yedekparca">Yedek Parça Talebi</option>
+                            <option value="servis">Teknik Servis Randevusu</option>
+                            <option value="diger">Diğer</option>
+                        </select>
+                    </div>
 
-                        <div id="warrantyGroup" class="form-group warranty-group">
-                            <label for="warrantySelect" class="warranty-label">Cihazın garantisi devam ediyor mu?</label>
+                    <div id="brandGroup" class="form-group brand-group">
+                        <select id="brandSelect">
+                            <option value="" disabled selected>Cihaz Markasını Seçiniz</option>
+                            <option value="Maktek">Maktek</option>
+                            <option value="Sanica">Sanica</option>
+                            <option value="Ariston">Ariston</option>
+                            <option value="Hexel">Hexel</option>
+                            <option value="Diger">Diğer</option>
+                        </select>
+                    </div>
 
-                            <select id="warrantySelect">
-                                <option value="hayir">Hayır, Garantisi Bitti / Yok</option>
-                                <option value="evet">Evet, Garantisi Devam Ediyor</option>
-                            </select>
-                        </div>
+                    <div id="warrantyGroup" class="form-group warranty-group">
+                        <label for="warrantySelect" class="warranty-label">Cihazın garantisi devam ediyor mu?</label>
+                        <select id="warrantySelect">
+                            <option value="hayir">Hayır, Garantisi Bitti / Yok</option>
+                            <option value="evet">Evet, Garantisi Devam Ediyor</option>
+                        </select>
+                    </div>
 
-                        <div class="form-group">
-                            <textarea id="messageInput" placeholder="Mesajınız..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Gönder</button>
-                    </form>
-                </div>
-
+                    <div class="form-group">
+                        <textarea id="messageInput" placeholder="Mesajınız..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gönder</button>
+                </form>
             </div>
         </div>
+    </div>
+</main>
 
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d100067.8763567439!2d26.9676744!3d38.6483561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1710000000000"
-                    title="Güneri Teknik Hizmet Bölgesi: Menemen, Foça ve Aliağa Haritası"
-                    loading="lazy">
-            </iframe>
-        </div>
-    </main>
-
-    <script src="wwwroot/js/site.js"></script>
-
+<script src="wwwroot/js/site.js"></script>
 </body>
 </html>
