@@ -1042,6 +1042,47 @@ body.page-yedekparca {
     .submit-btn:hover {
         background: #ff7e5f;
     }
+/* Garanti Uyarı Kutusu Tasarımı */
+.warranty-info-box {
+    display: none; /* JS ile açılacak */
+    background-color: #fff8e1;
+    border-left: 5px solid #ffa000;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.warranty-info-box h4 {
+    color: #c43e00;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.warranty-info-box p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #5d4037;
+}
+
+.call-btn {
+    display: inline-block;
+    background-color: #ffa000;
+    color: #fff !important;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    text-align: center;
+}
+
+.call-btn:hover {
+    background-color: #ff8f00;
+}
 
 /* Harita Alanı */
 .map-container {
