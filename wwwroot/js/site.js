@@ -96,35 +96,51 @@ const modal = document.getElementById("kvkkModal");
 
         // 2. Form Kontrol ve Gönderim Mantığı
         document.getElementById('contactForm').addEventListener('submit', function (e) {
-            const name = document.getElementById('nameInput').value;
-            const phone = document.getElementById('phoneInput').value;
-            const service = document.getElementById('serviceSelect').value;
-            const warranty = document.getElementById('warrantySelect').value;
-            const message = document.getElementById('messageInput').value;
+    e.preventDefault(); // Sayfanın yenilenmesini her durumda durduralım, kontrol bizde olsun.
 
-            // Başında 0 kontrolü
-            if (!phone.startsWith('0')) {
-                alert("Lütfen numaranızı başında '0' olacak şekilde 11 hane olarak giriniz.");
-                e.preventDefault();
-                return;
-            }
+    const name = document.getElementById('nameInput').value;
+    const phone = document.getElementById('phoneInput').value;
+    const service = document.getElementById('serviceSelect').value;
+    const warranty = document.getElementById('warrantySelect').value;
+    const brand = document.getElementById('brandSelect') ? document.getElementById('brandSelect').value : "Belirtilmedi";
+    const message = document.getElementById('messageInput').value;
 
-            // Garantili Ürün Filtreleme Mantığı
-            if (service === 'servis' && warranty === 'evet') {
-                e.preventDefault(); // Formun gitmesini engelle
+    // Marka Çağrı Merkezi Listesi (Senin istediğin yönlendirme için)
+    const markalar = {
+        "Maktek": "444 44 44",
+        "Sanica": "0850 111 22 33",
+        "Ariston": "444 1 588",
+        "Hexel": "0850 444 55 66"
+    };
 
-                alert("Bilgi: Cihazınızın garantisi devam ettiği için lütfen ürününüzün markasına ait resmi çağrı merkezinden servis talebi oluşturun. Garantili işlemlerde Ana Merkez üzerinden kayıt açtırmanız gereklidir. Anlayışınız için teşekkürler.");
+    // 1. Telefon Numarası Kontrolü
+    if (!phone.startsWith('0') || phone.length !== 11) {
+        alert("Lütfen numaranızı başında '0' olacak şekilde 11 hane olarak giriniz.");
+        return;
+    }
 
-                // Arka plan ön bilgisi (Log)
-                console.log("--- GARANTİLİ ÜRÜN BİLDİRİMİ ---");
-                console.log(`Ad Soyad: ${name}`);
-                console.log(`Tel. No: ${phone}`);
-                console.log(`Mesaj: ${message}`);
-                console.log("Durum: Garantili ürün servis talebi için çağrı merkezine yönlendirildi.");
-                console.log("--------------------------------");
-            } else {
-                // Standart Talep Gönderimi
-                alert("Talebiniz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.");
-            }
+    // 2. Garantili Ürün Filtreleme (Senin istediğin engelleyici)
+    if (service === 'servis' && warranty === 'evet') {
+        const numara = markalar[brand] || "marka çağrı merkezini";
+        alert(`Bilgi: ${brand} yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırınız. Kayıt bize ulaştığında uzman ekibimiz sizi arayacaktır.`);
+        return;
+    } 
+
+    // 3. Standart Talep Gönderimi (WhatsApp + Ofis Takibi Başlangıcı)
+    const whatsappNo = "905376183344";
+    const metin = `*Güneri Teknik Web Talebi*%0A` +
+                  `*Müşteri:* ${name}%0A` +
+                  `*Tel:* ${phone}%0A` +
+                  `*Cihaz/Marka:* ${brand}%0A` +
+                  `*Hizmet:* ${service}%0A` +
+                  `*Mesaj:* ${message}`;
+
+    // Ofis Takibi (Google Sheets) buraya gelecek
+    console.log("Ofis kaydı için veri hazırlandı...");
+
+    // Müşteriye bilgi ver ve WhatsApp'ı aç
+    alert("Talebiniz başarıyla alınmıştır. Teknik ekibimize iletilmek üzere WhatsApp'a yönlendiriliyorsunuz.");
+    window.open(`https://wa.me/${whatsappNo}?text=${metin}`, '_blank');
+});
         });
         
