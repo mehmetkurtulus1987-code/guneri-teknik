@@ -106,10 +106,10 @@ if (contactForm) {
         const message = document.getElementById('messageInput').value;
 
         const markalar = {
-            "Maktek": "444 44 44",
-            "Sanica": "0850 111 22 33",
-            "Ariston": "444 1 588",
-            "Hexel": "0850 444 55 66"
+            "Maktek": "0850 441 42 00",
+            "Sanica": "0850 460 66 88",
+            "Ariston": "444 92 31",
+            "Hexel": "0850 346 29 29"
         };
 
         if (!phone.startsWith('0') || phone.length !== 11) {
@@ -123,7 +123,7 @@ if (contactForm) {
             return;
         }
 
-        const whatsappNo = "905376183344";
+        const whatsappNo = "905060357883";
         const metin = `*Güneri Teknik Web Talebi*%0A` +
                       `*Müşteri:* ${name}%0A` +
                       `*Tel:* ${phone}%0A` +
