@@ -82,13 +82,15 @@ function toggleFields() {
     const service = document.getElementById('serviceSelect').value;
     const warranty = document.getElementById('warrantySelect').value;
     const brand = document.getElementById('brandSelect').value;
+    const brandSelectElement = document.getElementById('brandSelect');
+    const otherOption = document.getElementById('otherBrandOption');
     
     const warrantyGroup = document.getElementById('warrantyGroup');
     const brandGroup = document.getElementById('brandGroup');
+    const manualBrandGroup = document.getElementById('manualBrandGroup');
     const warrantyAlert = document.getElementById('warrantyAlert');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Güncel Marka Çağrı Merkezleri
     const markalar = {
         "Maktek": "0850 441 42 00",
         "Sanica": "0850 460 66 88",
@@ -96,33 +98,39 @@ function toggleFields() {
         "Hexel": "0850 346 29 29"
     };
 
-    // Temizleme: Önce her şeyi gizle
-    if (warrantyGroup) warrantyGroup.style.display = 'none';
-    if (brandGroup) brandGroup.style.display = 'none';
-    if (warrantyAlert) warrantyAlert.style.display = 'none';
-    if (submitBtn) submitBtn.style.display = 'block';
+    // Temizlik
+    warrantyGroup.style.display = 'none';
+    brandGroup.style.display = 'none';
+    manualBrandGroup.style.display = 'none';
+    warrantyAlert.style.display = 'none';
+    submitBtn.style.display = 'block';
 
-    // 1. Durum: Teknik Servis
+    // DURUM 1: Teknik Servis
     if (service === 'servis') {
         brandGroup.style.display = 'block';
         warrantyGroup.style.display = 'block';
-        
-        if (warranty === 'evet' && brand !== "") {
+        otherOption.style.display = 'none'; // Yetkili servis değilsek arızaya bakmıyoruz
+
+        if (brand === 'Diger') brandSelectElement.value = ""; // Eğer daha önce seçiliyse sıfırla
+
+        if (warranty === 'evet' && brand !== "" && brand !== "Diger") {
             const numara = markalar[brand] || "marka çağrı merkezini";
-            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırınız. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır.`;
+            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir.`;
             document.getElementById('callCenterBtn').href = "tel:" + numara.replace(/\s/g, '');
-            
             warrantyAlert.style.display = 'block';
             submitBtn.style.display = 'none';
         }
     } 
-    // 2. Durum: Yıllık Bakım
+    // DURUM 2: Yıllık Bakım
     else if (service === 'bakim') {
         brandGroup.style.display = 'block';
-        // Bakımda garanti sorusu ve uyarı kutusu kapalı kalır
+        otherOption.style.display = 'block'; // Bakımda her markaya bakabiliriz
+
+        if (brand === 'Diger') {
+            manualBrandGroup.style.display = 'block';
+        }
     }
 }
-
 // Event Dinleyicileri (Sayfa yüklendiğinde elemanlar varsa bağla)
 window.addEventListener('DOMContentLoaded', () => {
     const wSelect = document.getElementById('warrantySelect');
