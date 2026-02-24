@@ -20,29 +20,34 @@ if (modal) {
 }
 
 // yedekparca arama fonk.
+// 1. Kategori Filtreleme Fonksiyonu
 function filterCategory(category) {
     let buttons = document.getElementsByClassName('filter-btn');
     for (let btn of buttons) {
         btn.classList.remove('active');
     }
-    event.currentTarget.classList.add('active');
+    // Seçilen butona aktif sınıfını ekle
+    if (event) event.currentTarget.classList.add('active');
 
     let items = document.getElementsByClassName('part-item');
     for (let i = 0; i < items.length; i++) {
         let itemCategory = items[i].getAttribute('data-category');
         if (category === 'all' || itemCategory === category) {
-            items[i].style.display = "";
+            items[i].style.display = "block";
             items[i].style.animation = "fadeIn 0.4s ease";
         } else {
             items[i].style.display = "none";
         }
     }
+    
+    // Boş kalan başlıkları (section) gizle
+    updateCategoryVisibility();
 }
 
+// 2. Arama Fonksiyonu
 function searchParts() {
     let input = document.getElementById('partSearch').value.toLocaleLowerCase('tr-TR');
     let items = document.getElementsByClassName('part-item');
-    let categories = document.getElementsByClassName('part-category');
 
     for (let i = 0; i < items.length; i++) {
         let title = items[i].getElementsByTagName('h3')[0].innerText.toLocaleLowerCase('tr-TR');
@@ -54,27 +59,46 @@ function searchParts() {
             items[i].style.display = "none";
         }
     }
+    
+    // Arama sonrası boş kalan başlıkları gizle
+    updateCategoryVisibility();
+}
 
-    for (let j = 0; j < categories.length; j++) {
-        let categoryItems = categories[j].getElementsByClassName('part-item');
+// 3. Yardımcı Fonksiyon: Boş Kategorileri Yönetir
+function updateCategoryVisibility() {
+    let categories = document.getElementsByClassName('part-category');
+    
+    for (let i = 0; i < categories.length; i++) {
+        let itemsInSection = categories[i].getElementsByClassName('part-item');
         let hasVisibleItem = false;
 
-        for (let k = 0; k < categoryItems.length; k++) {
-            if (categoryItems[k].style.display === "block") {
+        // Section içindeki parçalardan herhangi biri görünüyor mu?
+        for (let j = 0; j < itemsInSection.length; j++) {
+            if (itemsInSection[j].style.display !== "none") {
                 hasVisibleItem = true;
                 break;
             }
         }
 
-        if (input === "") {
-            categories[j].style.display = "block";
-        } else if (hasVisibleItem) {
-            categories[j].style.display = "block";
-        } else {
-            categories[j].style.display = "none";
-        }
+        // Görünür parça yoksa tüm section'ı (başlık dahil) gizle
+        categories[i].style.display = hasVisibleItem ? "block" : "none";
     }
 }
+
+// 4. WhatsApp Fiyat Al Butonlarını Otomatikleştir
+document.addEventListener('DOMContentLoaded', () => {
+    const orderButtons = document.querySelectorAll('.order-btn');
+    const whatsappBase = "https://wa.me/905376183344?text=";
+
+    orderButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            // Eğer href sadece # ise veya wa.me içeriyorsa mesajı özelleştir
+            const partName = this.parentElement.querySelector('h3').innerText;
+            const message = encodeURIComponent(`Merhaba, *${partName}* yedek parçası hakkında fiyat alabilir miyim?`);
+            this.href = whatsappBase + message;
+        });
+    });
+});
 
 // İLETİŞİM SAYFASI
 // 1. Servis seçildiğinde garanti ve marka alanlarını gösteren fonksiyon
