@@ -14,6 +14,8 @@ html {  scroll-behavior: smooth;}
 html, body {  height: 100%;    }
 
 body {
+    min-height: 100vh;
+    transition: none !important;
     display: flex;
     flex-direction: column;
     line-height: 1.6;
@@ -37,6 +39,9 @@ img {
     -o-user-drag: none;
     user-select: none;
     -webkit-touch-callout: none; /* Mobilde uzun basınca çıkan menüyü engeller */
+}
+#imageModal {
+    touch-action: none; 
 }
 
 /* ==========================================================================
