@@ -91,6 +91,7 @@ function closeLightbox() {
         const scrollY = document.body.style.top;
         document.body.style.position = '';
         document.body.style.top = '';
+        document.body.style.width = '';
         window.scrollTo(0, parseInt(scrollY || '0') * -1);
         
         lb.style.display = "none";
