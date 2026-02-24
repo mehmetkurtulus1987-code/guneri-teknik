@@ -115,6 +115,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// Görsel Büyütme Fonksiyonları
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.part-img img');
+    const lightbox = document.getElementById('imageModal');
+    const lightboxImg = document.getElementById('imgFull');
+    const captionText = document.getElementById('caption');
+
+    images.forEach(img => {
+        img.addEventListener('click', function() {
+            lightbox.style.display = "block";
+            lightboxImg.src = this.src;
+            // Resmin altındaki h3 başlığını altyazı yapalım
+            const title = this.closest('.part-item').querySelector('h3').innerText;
+            captionText.innerHTML = title;
+            document.body.style.overflow = "hidden"; // Sayfa kaydırmayı durdur
+        });
+    });
+});
+
+function closeLightbox() {
+    document.getElementById('imageModal').style.display = "none";
+    document.body.style.overflow = "auto"; // Kaydırmayı geri aç
+}
 
 // İLETİŞİM SAYFASI
 // 1. Servis seçildiğinde garanti ve marka alanlarını gösteren fonksiyon
