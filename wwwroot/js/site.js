@@ -88,90 +88,90 @@ function toggleFields() {
     const warrantyAlert = document.getElementById('warrantyAlert');
     const submitBtn = document.getElementById('submitBtn');
 
+    // Güncel Marka Çağrı Merkezleri
     const markalar = {
-        "Maktek": "444 44 44",
-        "Sanica": "0850 111 22 33",
-        "Ariston": "444 1 588",
-        "Hexel": "0850 444 55 66"
+        "Maktek": "0850 441 42 00",
+        "Sanica": "0850 460 66 88",
+        "Ariston": "444 92 31",
+        "Hexel": "0850 346 29 29"
     };
 
-    // 1. Durum: Teknik Servis Seçilirse (Hem Marka Hem Garanti Sor)
+    // Temizleme: Önce her şeyi gizle
+    if (warrantyGroup) warrantyGroup.style.display = 'none';
+    if (brandGroup) brandGroup.style.display = 'none';
+    if (warrantyAlert) warrantyAlert.style.display = 'none';
+    if (submitBtn) submitBtn.style.display = 'block';
+
+    // 1. Durum: Teknik Servis
     if (service === 'servis') {
-        warrantyGroup.style.display = 'block';
         brandGroup.style.display = 'block';
+        warrantyGroup.style.display = 'block';
         
         if (warranty === 'evet' && brand !== "") {
-            const numara = markalar[brand] || "Marka Merkezi";
-            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır.`;
+            const numara = markalar[brand] || "marka çağrı merkezini";
+            document.getElementById('alertMessage').innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırınız. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır.`;
             document.getElementById('callCenterBtn').href = "tel:" + numara.replace(/\s/g, '');
             
             warrantyAlert.style.display = 'block';
             submitBtn.style.display = 'none';
-        } else {
-            warrantyAlert.style.display = 'none';
-            submitBtn.style.display = 'block';
         }
     } 
-    // 2. Durum: Yıllık Bakım Seçilirse (Sadece Marka Sor, Garanti Engeli Çıkarma)
+    // 2. Durum: Yıllık Bakım
     else if (service === 'bakim') {
         brandGroup.style.display = 'block';
-        warrantyGroup.style.display = 'none'; // Bakımda garanti sorgusunu gizle
-        warrantyAlert.style.display = 'none';
-        submitBtn.style.display = 'block';
-    }
-    // 3. Durum: Diğer (Yedek parça vs. - Her şeyi gizle)
-    else {
-        warrantyGroup.style.display = 'none';
-        brandGroup.style.display = 'none';
-        warrantyAlert.style.display = 'none';
-        submitBtn.style.display = 'block';
+        // Bakımda garanti sorusu ve uyarı kutusu kapalı kalır
     }
 }
 
-// Seçimler değiştikçe fonksiyonu tetikleyen dinleyicileri eklemeyi unutma
-document.getElementById('warrantySelect').addEventListener('change', toggleFields);
-document.getElementById('brandSelect').addEventListener('change', toggleFields);
+// Event Dinleyicileri (Sayfa yüklendiğinde elemanlar varsa bağla)
+window.addEventListener('DOMContentLoaded', () => {
+    const wSelect = document.getElementById('warrantySelect');
+    const bSelect = document.getElementById('brandSelect');
+    const cForm = document.getElementById('contactForm');
 
-// 2. Form Kontrol ve Gönderim Mantığı
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    if (wSelect) wSelect.addEventListener('change', toggleFields);
+    if (bSelect) bSelect.addEventListener('change', toggleFields);
 
-        const name = document.getElementById('nameInput').value;
-        const phone = document.getElementById('phoneInput').value;
-        const service = document.getElementById('serviceSelect').value;
-        const warranty = document.getElementById('warrantySelect').value;
-        const brand = document.getElementById('brandSelect') ? document.getElementById('brandSelect').value : "Belirtilmedi";
-        const message = document.getElementById('messageInput').value;
+    // 2. Form Kontrol ve Gönderim Mantığı
+    if (cForm) {
+        cForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        const markalar = {
-            "Maktek": "0850 441 42 00",
-            "Sanica": "0850 460 66 88",
-            "Ariston": "444 92 31",
-            "Hexel": "0850 346 29 29"
-        };
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const service = document.getElementById('serviceSelect').value;
+            const warranty = document.getElementById('warrantySelect').value;
+            const brand = document.getElementById('brandSelect') ? document.getElementById('brandSelect').value : "Belirtilmedi";
+            const message = document.getElementById('messageInput').value;
 
-        if (!phone.startsWith('0') || phone.length !== 11) {
-            alert("Lütfen numaranızı başında '0' olacak şekilde 11 hane olarak giriniz.");
-            return;
-        }
+            const markalar = {
+                "Maktek": "0850 441 42 00",
+                "Sanica": "0850 460 66 88",
+                "Ariston": "444 92 31",
+                "Hexel": "0850 346 29 29"
+            };
 
-        if (service === 'servis' && warranty === 'evet') {
-            const numara = markalar[brand] || "marka çağrı merkezini";
-            alert(`Bilgi: ${brand} yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır. Yıllık bakım yaptırmak için telefon ya da Whatsap üzerinden direkt irtibat kurabilirsiniz.`);
-            return;
-        }
+            if (!phone.startsWith('0') || phone.length !== 11) {
+                alert("Lütfen numaranızı başında '0' olacak şekilde 11 hane olarak giriniz.");
+                return;
+            }
 
-        const whatsappNo = "905060357883";
-        const metin = `*Güneri Teknik Web Talebi*%0A` +
-                      `*Müşteri:* ${name}%0A` +
-                      `*Tel:* ${phone}%0A` +
-                      `*Cihaz/Marka:* ${brand}%0A` +
-                      `*Hizmet:* ${service}%0A` +
-                      `*Mesaj:* ${message}`;
+            if (service === 'servis' && warranty === 'evet') {
+                const numara = markalar[brand] || "marka çağrı merkezini";
+                alert(`Bilgi: ${brand} yetkili servisiyiz ancak cihazınızın garantisi devam ettiği için lütfen önce ${numara} numarasından kayıt açtırmanız gerekmektedir. Kaydınız bize ulaştığında uzman ekibimiz sizi arayacaktır. Yıllık bakım yaptırmak için telefon ya da Whatsap üzerinden direkt irtibat kurabilirsiniz.`);
+                return;
+            }
 
-        alert("Talebiniz başarıyla alınmıştır. Detayları iletmek üzere WhatsApp'a yönlendiriliyorsunuz.");
-        window.open(`https://wa.me/${whatsappNo}?text=${metin}`, '_blank');
-    });
-}
+            const whatsappNo = "905060357883";
+            const metin = `*Güneri Teknik Web Talebi*%0A` +
+                          `*Müşteri:* ${name}%0A` +
+                          `*Tel:* ${phone}%0A` +
+                          `*Cihaz/Marka:* ${brand}%0A` +
+                          `*Hizmet:* ${service}%0A` +
+                          `*Mesaj:* ${message}`;
+
+            alert("Talebiniz başarıyla alınmıştır. Detayları iletmek üzere WhatsApp'a yönlendiriliyorsunuz.");
+            window.open(`https://wa.me/${whatsappNo}?text=${metin}`, '_blank');
+        });
+    }
+});
