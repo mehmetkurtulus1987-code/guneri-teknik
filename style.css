@@ -17,8 +17,11 @@ body {
     display: flex;
     flex-direction: column;
     line-height: 1.6;
-    background-color: #f8fafd; /* Daha ferah bir zemin */
-    color: #333; /* Okunabilir koyu gri */
+    background-color: #f8fafd; 
+    color: #333; 
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
@@ -26,6 +29,10 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: auto;
+}
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
 /* ==========================================================================
