@@ -1339,4 +1339,6 @@ body.page-yedekparca {
     .hakkimizda-content, .urunlerimiz-content { padding: 30px; margin: 15px; }
     .main-yedekparca { margin-top: 80px !important; }
     .contact-main { padding-top: 80px; }
+    input, select, textarea { font-size: 16px !important; /* iOS'ta otomatik zoom'u engeller */ padding: 12px; }
+    .warranty-info-box { padding: 15px; }
 }
