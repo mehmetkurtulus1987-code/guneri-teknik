@@ -72,12 +72,12 @@ function toggleFields() {
     const warrantyAlert = document.getElementById('warrantyAlert');
     const submitBtn = document.getElementById('submitBtn');
     
-    // "Diğer" seçeneğini bul
-    const otherOption = brandSelect.querySelector('option[value="Diger"]');
+    // "Diğer" seçeneğini her ihtimale karşı değişkende tutalım
+    let otherOption = brandSelect.querySelector('option[value="Diger"]');
 
     const markalar = { "Maktek": "0850 441 42 00", "Sanica": "0850 460 66 88", "Ariston": "444 92 31", "Hexel": "0850 346 29 29" };
 
-    // Başlangıç Ayarları
+    // Varsayılan temizlik
     if (warrantyGroup) warrantyGroup.style.display = 'none';
     if (brandGroup) brandGroup.style.display = 'none';
     if (manualBrandGroup) manualBrandGroup.style.display = 'none';
@@ -85,31 +85,36 @@ function toggleFields() {
     if (submitBtn) submitBtn.style.display = 'block';
 
     if (service === 'servis') {
-        // Teknik Servis: Diğer seçeneğini GİZLE
-        if (otherOption) otherOption.style.display = 'none';
+        // iOS İÇİN KRİTİK DÜZELTME: Seçeneği listeden tamamen siliyoruz
+        if (otherOption) {
+            otherOption.remove(); 
+        }
+        
         if (brandGroup) brandGroup.style.display = 'block';
         if (warrantyGroup) warrantyGroup.style.display = 'block';
         
-        // Eğer kullanıcı daha önce Diğer'i seçtiyse temizle
         if (brand === 'Diger') brandSelect.value = "";
 
-        // Garanti Kontrolü
         if (warranty === 'evet' && brand && brand !== "Diger") {
             const numara = markalar[brand] || "çağrı merkezini";
             const alertMsg = document.getElementById('alertMessage');
             if (alertMsg) alertMsg.innerHTML = `<b>${brand}</b> yetkili servisiyiz ancak yasal garanti süreci gereği önce çağrı merkezinden kayıt açtırmanız gerekmektedir.`;
             const callBtn = document.getElementById('callCenterBtn');
             if (callBtn) callBtn.href = "tel:" + numara.replace(/\s/g, '');
-            
             if (warrantyAlert) warrantyAlert.style.display = 'block';
             if (submitBtn) submitBtn.style.display = 'none';
         }
-    } else if (service === 'bakim') {
-        // Bakım: Diğer seçeneğini GÖSTER
-        if (otherOption) otherOption.style.display = 'block';
-        if (brandGroup) brandGroup.style.display = 'block';
+    } 
+    else if (service === 'bakim') {
+        // Eğer "Diğer" seçeneği listede yoksa tekrar ekle
+        if (!otherOption) {
+            const newOption = document.createElement('option');
+            newOption.value = "Diger";
+            newOption.text = "Diğer";
+            brandSelect.add(newOption);
+        }
         
-        // Diğer seçildiyse manuel giriş kutusunu göster
+        if (brandGroup) brandGroup.style.display = 'block';
         if (brand === 'Diger' && manualBrandGroup) {
             manualBrandGroup.style.display = 'block';
         }
