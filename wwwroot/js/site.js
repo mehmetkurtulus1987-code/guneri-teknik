@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. GOOGLE SHEETS KAYDI (EXCEL)
             // Kopyaladığın URL'yi aşağıdaki tırnakların içine yapıştır
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzeRoApOrtuOAdyycvL6r3OSXtkCzVBBn9v63gJLGu9uVUeZYWAPS4fTN8j-H8YSTXRiQ/exec'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTcZuAo3VF1PZozQr2MTA9jwD2r_4PpjwulnWX4wz1vlMEW57qZZZkB9o5gtiP0kOpMQ/exec'; 
             
             const formData = new FormData();
             formData.append('name', name);
