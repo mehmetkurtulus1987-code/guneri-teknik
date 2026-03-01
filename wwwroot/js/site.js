@@ -11,7 +11,53 @@ function openKvkk() { if (modal) { modal.showModal(); document.body.style.overfl
 function closeKvkk() { if (modal) { modal.close(); document.body.style.overflow = "auto"; } }
 if (modal) { modal.addEventListener("click", (e) => { if (e.target === modal) closeKvkk(); }); }
 
-// --- 3. YEDEK PARÇA FİLTRELEME VE ARAMA ---
+// --- 3. YEDEK PARÇA VERİ ÇEKME VE FİLTRELEME ---
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIuvoE6Mdx-csDbY7ECBAadzc2d4R9SB3NFdcZy0CVoRP5LuhYl-ogCpGnPtXvnnSBi6_9FNTZQ-mA/pub?gid=0&single=true&output=csv';
+
+async function yedekParcalariYukle() {
+    try {
+        const response = await fetch(sheetURL);
+        const data = await response.text();
+        const rows = data.split(/\r?\n/).slice(1);
+        document.querySelectorAll('.parts-grid').forEach(grid => grid.innerHTML = '');
+
+        rows.forEach((row) => {
+            const cols = row.split(/[;,]/);
+            if (cols.length < 7) return;
+            const [isim, marka, klasor, kategoriID, fiyat, stok, resimAdi] = cols.map(c => c.trim().replace(/"/g, ''));
+            const temizID = kategoriID.toLowerCase().replace(/\s/g, '');
+            const targetGrid = document.querySelector(`#cat-${temizID} .parts-grid`);
+
+            if (targetGrid) {
+                // Universal klasör kontrolü
+                const resimYolu = (klasor && klasor !== "") ? `img/YedekParca/${klasor}/${resimAdi}` : `img/YedekParca/${resimAdi}`;
+                const isAvailable = stok.toLowerCase() === 'var';
+                const stokMetni = isAvailable ? 'Stokta Var' : 'Stokta Yok';
+                const stokClass = isAvailable ? 'in-stock' : 'out-of-stock';
+
+                targetGrid.innerHTML += `
+    <div class="part-item" data-category="${temizID}">
+        <div class="part-img">
+            <img src="${resimYolu}" alt="${isim}" onerror="this.src='img/placeholder.jpg'" onclick="openLightbox('${resimYolu}', '${isim}')">
+        </div>
+        <div class="part-details">
+            <h3>${isim}</h3>
+            <p class="compatible-brands">Marka: ${marka}</p>
+            <div class="part-price-row">
+                <span class="price">${fiyat}</span>
+            </div>
+            <div class="stock-info">
+                <span class="stock-status ${stokClass}">${stokMetni}</span>
+            </div>
+            <button class="order-btn" onclick="window.open('https://wa.me/905376183344?text=Merhaba, *${encodeURIComponent(isim)}* hakkında fiyat bilgisi alabilir miyim?', '_blank')">Fiyat Al</button>
+        </div>
+    </div>`;
+            }
+        });
+        updateCategoryVisibility();
+    } catch (e) { console.error("Hata:", e); }
+}
+
 function filterCategory(category) {
     let buttons = document.getElementsByClassName('filter-btn');
     for (let btn of buttons) btn.classList.remove('active');
@@ -54,12 +100,11 @@ function updateCategoryVisibility() {
     }
 }
 
-// --- 4. İLETİŞİM SAYFASI MANTIĞI (GÜNCELLENMİŞ: SERVİS/BAKIM VE iOS UYUMLU) ---
+// --- 4. İLETİŞİM SAYFASI MANTIĞI ---
 function toggleFields() {
     const serviceSelect = document.getElementById('serviceSelect');
     const brandSelect = document.getElementById('brandSelect');
     const warrantySelect = document.getElementById('warrantySelect');
-    
     if (!serviceSelect || !brandSelect) return;
 
     const service = serviceSelect.value;
@@ -71,7 +116,7 @@ function toggleFields() {
     const manualBrandGroup = document.getElementById('manualBrandGroup');
     const warrantyAlert = document.getElementById('warrantyAlert');
     const submitBtn = document.getElementById('submitBtn');
-    
+
     let otherOption = brandSelect.querySelector('option[value="Diger"]');
     const markalar = { "Maktek": "0850 441 42 00", "Sanica": "0850 460 66 88", "Ariston": "444 92 31", "Hexel": "0850 346 29 29" };
 
@@ -82,7 +127,7 @@ function toggleFields() {
     if (submitBtn) submitBtn.style.display = 'block';
 
     if (service === 'servis') {
-        if (otherOption) otherOption.remove(); 
+        if (otherOption) otherOption.remove();
         if (brandGroup) brandGroup.style.display = 'block';
         if (warrantyGroup) warrantyGroup.style.display = 'block';
         if (brand === 'Diger') brandSelect.value = "";
@@ -96,8 +141,7 @@ function toggleFields() {
             if (warrantyAlert) warrantyAlert.style.display = 'block';
             if (submitBtn) submitBtn.style.display = 'none';
         }
-    } 
-    else if (service === 'bakim') {
+    } else if (service === 'bakim') {
         if (!otherOption) {
             const newOption = document.createElement('option');
             newOption.value = "Diger";
@@ -105,13 +149,11 @@ function toggleFields() {
             brandSelect.add(newOption);
         }
         if (brandGroup) brandGroup.style.display = 'block';
-        if (brand === 'Diger' && manualBrandGroup) {
-            manualBrandGroup.style.display = 'block';
-        }
+        if (brand === 'Diger' && manualBrandGroup) manualBrandGroup.style.display = 'block';
     }
 }
 
-// --- 5. LIGHTBOX (GÖRSEL BÜYÜTME - MOBİL UYUMLU) ---
+// --- 5. LIGHTBOX ---
 function openLightbox(src, title) {
     const lb = document.getElementById('imageModal');
     const lbImg = document.getElementById('imgFull');
@@ -141,6 +183,21 @@ function closeLightbox() {
 
 // --- 6. SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. TELEFON NUMARASI KISITLAMASI (RAKAM ZORUNLULUĞU)
+    const phoneInput = document.getElementById('phoneInput');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, ''); // Rakam dışındakileri sil
+            if (this.value.length > 11) this.value = this.value.slice(0, 11); // Max 11 hane
+        });
+    }
+
+    // 2. YEDEK PARÇA OTOMATİK YÜKLEME (EĞER SAYFADAYSA)
+    if (document.querySelector('.parts-grid')) {
+        yedekParcalariYukle();
+    }
+
+    // 3. İLETİŞİM FORMU OLAYLARI
     ['serviceSelect', 'brandSelect', 'warrantySelect'].forEach(id => {
         document.getElementById(id)?.addEventListener('change', toggleFields);
     });
@@ -149,28 +206,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cForm) {
         cForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Verileri Al
             const name = document.getElementById('nameInput').value;
             const phone = document.getElementById('phoneInput').value;
             const service = document.getElementById('serviceSelect').value;
             const message = document.getElementById('messageInput').value;
             let selectedBrand = document.getElementById('brandSelect').value;
-            
-            if (selectedBrand === "Diger") {
-                selectedBrand = document.getElementById('manualBrandInput')?.value || "Diğer";
-            }
+
+            if (selectedBrand === "Diger") selectedBrand = document.getElementById('manualBrandInput')?.value || "Diğer";
 
             // Numara Kontrolü
-            if (!phone.startsWith('0') || phone.length !== 11) { 
-                alert("Numaranızı 0 ile başlayan 11 hane olarak giriniz."); 
-                return; 
+            if (!phone.startsWith('0') || phone.length !== 11) {
+                alert("Numaranızı 0 ile başlayan 11 hane olarak giriniz.");
+                return;
             }
 
-            // 1. GOOGLE SHEETS KAYDI (EXCEL)
-            // Kopyaladığın URL'yi aşağıdaki tırnakların içine yapıştır
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTcZuAo3VF1PZozQr2MTA9jwD2r_4PpjwulnWX4wz1vlMEW57qZZZkB9o5gtiP0kOpMQ/exec'; 
-            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTcZuAo3VF1PZozQr2MTA9jwD2r_4PpjwulnWX4wz1vlMEW57qZZZkB9o5gtiP0kOpMQ/exec';
             const formData = new FormData();
             formData.append('name', name);
             formData.append('phone', phone);
@@ -178,32 +228,20 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('brand', selectedBrand);
             formData.append('message', message);
 
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(res => console.log('Excel kaydı başarılı!'))
-                .catch(err => console.error('Excel hatası:', err));
+            fetch(scriptURL, { method: 'POST', body: formData });
 
-            // 2. WHATSAPP GÖNDERİMİ
             const metin = `*Güneri Teknik Web Talebi*%0A*Müşteri:* ${name}%0A*Tel:* ${phone}%0A*Cihaz:* ${selectedBrand}%0A*Hizmet:* ${service}%0A*Mesaj:* ${message}`;
             window.open(`https://wa.me/905060357883?text=${metin}`, '_blank');
         });
     }
 
-    // Yedek Parça Sipariş Butonları
-    document.querySelectorAll('.order-btn').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const partName = this.closest('.part-item').querySelector('h3').innerText;
-            const targetUrl = `https://wa.me/905376183344?text=${encodeURIComponent('Merhaba, *' + partName + '* için fiyat alabilir miyim?')}`;
-            window.open(targetUrl, '_blank');
-        });
-    });
-
-    // Resimlere Tıklayınca Lightbox Aç
-    document.querySelectorAll('.part-img img').forEach(img => {
-        img.addEventListener('click', function(e) {
-            const title = this.closest('.part-item').querySelector('h3').innerText;
-            openLightbox(this.src, title);
-        });
+    // Lightbox için resim dinleyicisi (Yüklenen resimler için delegasyon kullanılır)
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.part-img img')) {
+            const img = e.target;
+            const title = img.closest('.part-item').querySelector('h3').innerText;
+            openLightbox(img.src, title);
+        }
     });
 
     document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeLightbox(); });

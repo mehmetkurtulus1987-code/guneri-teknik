@@ -9,34 +9,32 @@
 <body class="page-yedekparca">
 
     <header>
-    <nav class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="img/Logo/guneri-teknik-logo.png" alt="Güneri Teknik Logo" class="site-logo">
-            <h1>GÜNERİ <span>TEKNİK</span></h1>
-        </a>
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/Logo/guneri-teknik-logo.png" alt="Güneri Teknik Logo" class="site-logo">
+                <h1>GÜNERİ <span>TEKNİK</span></h1>
+            </a>
 
-        <input type="checkbox" id="menu-bar">
-        <label for="menu-bar" class="hamburger-icon">☰</label>
-        <label for="menu-bar" class="menu-overlay"></label>
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar" class="hamburger-icon">☰</label>
+            <label for="menu-bar" class="menu-overlay"></label>
 
-        <ul class="menu">
-            <li><a href="index.html">Anasayfa</a></li>
-            <li><a href="hakkimizda.html">Hakkımızda</a></li>
-            <li><a href="urunlerimiz.html">Ürünlerimiz</a></li>
-            <li><a href="yedekparca.html">Yedek Parça</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
-        </ul>
-    </nav>
-</header>
+            <ul class="menu">
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="urunlerimiz.html">Ürünlerimiz</a></li>
+                <li><a href="yedekparca.html">Yedek Parça</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
     <main class="main-yedekparca">
-
         <div class="part-hero">
             <div class="container">
                 <h1>ORİJİNAL YEDEK PARÇA</h1>
                 <p>Sistemleriniz için %100 orijinal ve garantili parça desteği.</p>
             </div>
         </div>
-
         <div class="search-section">
             <div class="container">
                 <div class="search-box">
@@ -44,265 +42,50 @@
                     <span id="clearSearch" onclick="clearInput()">×</span>
                     <button type="button" class="search-btn">🔍</button>
                 </div>
-                <p class="search-hint">Aradığınız parçayı bulamazsanız lütfen teknik destek hattımızla iletişime geçin.</p>
-                <div class="filter-group">
-                    <button class="filter-btn active" onclick="filterCategory('all')">Hepsi</button>
-                    <button class="filter-btn" onclick="filterCategory('elektronik')">Elektronik & Kart</button>
-                    <button class="filter-btn" onclick="filterCategory('sugrubu')">Su Grubu & Pompa</button>
-                    <button class="filter-btn" onclick="filterCategory('atesleme')">Ateşleme & Fan</button>
-                    <button class="filter-btn" onclick="filterCategory('sensor')">Sensör & Ölçüm</button>
-                    <button class="filter-btn" onclick="filterCategory('tamir')">Tamir Takımları</button>
-                </div>
             </div>
         </div>
+        <p class="search-hint">Aradığınız parçayı bulamazsanız lütfen teknik destek hattımızla iletişime geçin.</p>
+            
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterCategory('all')">Tümü</button>
+                <button class="filter-btn" onclick="filterCategory('sensor')">Sensörler</button>
+                <button class="filter-btn" onclick="filterCategory('motor')">Vana Motorları</button>
+                <button class="filter-btn" onclick="filterCategory('sugrubu')">Su Grubu & Pompa</button>
+                <button class="filter-btn" onclick="filterCategory('tamir')">Tamir Takımları</button>
+            </div>
+            <div class="container parts-wrapper">
+                <section class="part-category" id="cat-motor">
+                    <h2 class="interactive-title">Vana & Motorlar</h2>
+                    <div class="parts-grid"></div>
+                </section>
 
-        <div class="container parts-wrapper">
+                <section class="part-category" id="cat-sugrubu">
+                    <h2 class="interactive-title">Su Grubu & Pompa</h2>
+                    <div class="parts-grid"></div>
+                </section>
 
-            <section class="part-category">
-                <h2 class="interactive-title">Elektronik & Kontrol Grubu</h2>
-                <div class="parts-grid">
-                    <div class="part-item" data-category="elektronik">
-                        <div class="part-img"><img src="img/yedekparca/anakart.jpg" alt="Ana Kart"></div>
-                        <div class="part-details">
-                            <h3>Üniversal Dijital Ana Kart</h3>
-                            <p class="compatible-brands">Uyumlu: Maktek, Sanica, Ariston</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="elektronik">
-                        <div class="part-img"><img src="img/yedekparca/atesleme.jpg" alt="Ateşleme Trafosu"></div>
-                        <div class="part-details">
-                            <h3>Ateşleme Trafosu</h3>
-                            <p class="compatible-brands">Uyumlu: Tüm Modeller</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <section class="part-category" id="cat-atesleme">
+                    <h2 class="interactive-title">Ateşleme Grubu & Fan</h2>
+                    <div class="parts-grid"></div>
+                </section>
 
-            <section class="part-category">
-                <h2 class="interactive-title">Su Grubu & Pompa</h2>
-                <div class="parts-grid">
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/wilo-pompa-ksl-15-5-82watt.jpg" alt="Sirkülasyon Pompası"></div>
-                        <div class="part-details">
-                            <h3>Wilo KSL 15/5 Pompa (82W)(Sirkülasyon)</h3>
-                            <p class="compatible-brands">Uyumlu: Universal</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/kombi-uc-yollu-vana-motor-220v-universal.jpeg" alt="Üç Yollu Vana"></div>
-                        <div class="part-details">
-                            <h3>3 Yollu Vana Motoru</h3>
-                            <p class="compatible-brands">Uyumlu: Universal</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Sanica/sanica-sol-blok-tamtakim.png" alt="Sanica Sol Blok"></div>
-                        <div class="part-details">
-                            <h3>Sanica Kombi Sol Blok Komple</h3>
-                            <p class="compatible-brands">Uyumlu: Sanica Java, Sanica Modelleri</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
+                <section class="part-category" id="cat-sensor">
+                    <h2 class="interactive-title">Sensör & Ölçüm Grubu</h2>
+                    <div class="parts-grid"></div>
+                </section>
 
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Ariston/ariston-clas-kombi-plakali-esanjor.jpg" alt="Ariston Clas Plakalı Eşanjör"></div>
-                        <div class="part-details">
-                            <h3>Ariston Clas Plakalı Eşanjör</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston </p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Ariston/ariston-egis-ana-esanjor-225mm-generous.png" alt="Ariston Egis Ana Eşanjör 225mm"></div>
-                        <div class="part-details">
-                            <h3>Ariston Egis Ana Eşanjör 225mm</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston </p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Maktek/epsilon-ana-esanjor.jpg" alt="Epsilon Ana Eşanjör"></div>
-                        <div class="part-details">
-                            <h3>Epsilon Eco Ana Eşanjör </h3>
-                            <p class="compatible-brands">Uyumlu: Maktek </p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Ariston/ariston-egis-class-doldurma-muslugu.jpg" alt="Ariston Su Doldurma Musluğu"></div>
-                        <div class="part-details">
-                            <h3>Ariston Su Doldurma Musluğu</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img"><img src="img/YedekParca/Ariston/ariston-emniyet-ventil.jpg" alt="Ariston Emniyet Ventili"></div>
-                        <div class="part-details">
-                            <h3>3 Bar Emniyet Ventili (Geçme)</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston Egis, Clas, BS</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img">
-                            <img src="img/YedekParca/Ariston/ariston-class-16-plaka-esanjor.jpeg" alt="Ariston 16 Plakalı Eşanjör">
-                        </div>
-                        <div class="part-details">
-                            <h3>Ariston Clas 16 Plakalı Eşanjör</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston Clas, Genus Serisi</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img">
-                            <img src="img/YedekParca/Ariston/ariston-class-12-plaka-esanjor.jpeg" alt="Ariston 12 Plakalı Eşanjör">
-                        </div>
-                        <div class="part-details">
-                            <h3>Ariston Clas 12 Plakalı Eşanjör</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston Clas, Egis, Matis Serisi</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img">
-                            <img src="img/YedekParca/Sanica/sanica-java-2400-kombi-uc-yollu-vana-step-motoru.png" alt="Sanica Java Vana Motoru">
-                        </div>
-                        <div class="part-details">
-                            <h3>Sanica Java 2400 Vana Motoru</h3>
-                            <p class="compatible-brands">Uyumlu: Sanica Java Serisi</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sugrubu">
-                        <div class="part-img">
-                            <img src="img/YedekParca/Ariston/ariston-kombi--spring-siyah-uc-yollu-vana-motoru-220v.jpeg" alt="Ariston Siyah Vana Motoru">
-                        </div>
-                        <div class="part-details">
-                            <h3>Ariston Spring Vana Motoru (220V)</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston Spring, Siyah Seri</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="part-category">
-                <h2 class="interactive-title">Ateşleme Grubu & Fan</h2>
-                <div class="parts-grid">
-                    <div class="part-item" data-category="atesleme">
-                        <div class="part-img"><img src="img/YedekParca/Maktek/fan-motoru.jpg" alt="Epsilon Eco Fan Motoru"></div>
-                        <div class="part-details">
-                            <h3>Epsilon Eco Fan Motoru</h3>
-                            <p class="compatible-brands">Uyumlu: Maktek Epsilon</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="atesleme">
-                        <div class="part-img"><img src="img/YedekParca/kombi-hava-prosestatı.jpg" alt="Hava Prpsestatı"></div>
-                        <div class="part-details">
-                            <h3>Hava Prpsestatı</h3>
-                            <p class="compatible-brands">Uyumlu: Universal</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    <div class="part-item" data-category="atesleme">
-                        <div class="part-img">
-                            <img src="img/YedekParca/kombi-universal-atesleme-elektrodu.jpg" alt="Universal Ateşleme Elektrodu">
-                        </div>
-                        <div class="part-details">
-                            <h3>Universal Ateşleme Elektrodu</h3>
-                            <p class="compatible-brands">Uyumlu: Tüm Standart Hermetik Kombiler</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="atesleme">
-                        <div class="part-img">
-                            <img src="img/YedekParca/Ariston/kombi-atesleme-elektrodu-ariston-genus.png" alt="Ariston Genus Ateşleme Elektrodu">
-                        </div>
-                        <div class="part-details">
-                            <h3>Ariston Genus Ateşleme Elektrodu</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston Genus, Clas, Egis Serisi</p>
-                            <a href="#" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="part-category">
-                <h2 class="interactive-title">Sensör & Ölçüm Grubu</h2>
-                <div class="parts-grid">
-                    <div class="part-item" data-category="sensor">
-                        <div class="part-img"><img src="img/YedekParca/limit-termostat-130-ntc-universal.jpg" alt="NTC Sensör"></div>
-                        <div class="part-details">
-                            <h3>NTC Sensörü(Limit Termostat)</h3>
-                            <p class="compatible-brands">Uyumlu: Universal</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sensor">
-                        <div class="part-img"><img src="img/YedekParca/Maktek/baca-limit-termostat.png" alt="Baca Limit Termostat"></div>
-                        <div class="part-details">
-                            <h3>Baca Limit Termostat</h3>
-                            <p class="compatible-brands">Uyumlu: Maktek</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-
-                    <div class="part-item" data-category="sensor">
-                        <div class="part-img"><img src="img/YedekParca/Ariston/ariston-kombi-ntc.jpg" alt="Ariston NTC Sensör"></div>
-                        <div class="part-details">
-                            <h3>Ariston NTC Sensör</h3>
-                            <p class="compatible-brands">Uyumlu: Ariston</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="part-category">
-                <h2 class="interactive-title">Tamir Takımları</h2>
-                <div class="parts-grid">
-                    <div class="part-item" data-category="tamir">
-                        <div class="part-img"><img src="img/YedekParca/Maktek/ucyolluvana_tamir_seti.png" alt="Epsilon 3 Yollu Vana Tamir Seti"></div>
-                        <div class="part-details">
-                            <h3>Epsilon 3 Yollu Vana Tamir Takımı</h3>
-                            <p class="compatible-brands">Uyumlu: Geçme/Daldırma Tip</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                    
-                    <div class="part-item" data-category="tamir">
-                        <div class="part-img"><img src="img/YedekParca/emniyet-ventili-tamir-takimi-universal.jpg" alt="Emniyet Ventili Tamir Takımı"></div>
-                        <div class="part-details">
-                            <h3>Emniyet Ventili Tamir Takımı</h3>
-                            <p class="compatible-brands">Uyumlu: Tüm 3 Bar Ventiller (Universal)</p>
-                            <a href="https://wa.me/905376183344" class="order-btn">Fiyat Al</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-        <script src="wwwroot/js/site.js"></script>
+                <section class="part-category" id="cat-tamir">
+                    <h2 class="interactive-title">Tamir Takımları</h2>
+                    <div class="parts-grid"></div>
+                </section>
+            </div>
+</main>
+    <script src="wwwroot/js/site.js"></script>
     <div id="imageModal" class="img-lightbox" onclick="closeLightbox()">
-            <span class="close-lightbox">&times;</span>
-            <img class="lightbox-content" id="imgFull">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="imgFull">
         <div id="caption"></div>
     </div>
-    
+
 </body>
 </html>

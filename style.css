@@ -738,9 +738,12 @@ body.page-yedekparca {
     }
 
 .search-hint {
-    margin-top: 10px;
-    color: #888;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: black;
     font-size: 0.8rem;
+    width: 100%;
 }
 #partSearch {
     padding-right: 40px; /* "x" işareti için sağda yer açalım */
@@ -1311,7 +1314,41 @@ body.page-yedekparca {
     padding-bottom: 5px;
 }
 /* ==========================================================================
-   10. MOBİL UYUMLULUK
+   10. Stok yazısı düzenlemesi (page-yedekparca)
+   ========================================================================== */
+
+.part-price-row {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.stock-info {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.stock-label {
+    color: #666;
+}
+
+.stock-status {
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.in-stock {
+    color: #27ae60; /* Yeşil */
+    background-color: #eafaf1;
+}
+
+.out-of-stock {
+    color: #e74c3c; /* Kırmızı */
+    background-color: #fdedec;
+}
+/* ==========================================================================
+   11. MOBİL UYUMLULUK
    ========================================================================== */
 @media (max-width: 1024px) {
    page-home .hero {
