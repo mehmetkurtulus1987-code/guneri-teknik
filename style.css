@@ -1350,7 +1350,7 @@ body.page-yedekparca {
 /* ==========================================================================
    11. MOBİL UYUMLULUK
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
    page-home .hero {
         background-attachment: scroll !important;
         background-size: cover !important;
