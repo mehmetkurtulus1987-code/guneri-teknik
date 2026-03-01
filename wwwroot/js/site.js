@@ -30,7 +30,7 @@ async function yedekParcalariYukle() {
 
             if (targetGrid) {
                 // Universal klasör kontrolü
-                const resimYolu = (klasor && klasor !== "") ? `img/YedekParca/${klasor}/${resimAdi}` : `img/YedekParca/${resimAdi}`;
+                const resimYolu = (klasor && klasor !== "") ? `/img/YedekParca/${klasor}/${resimAdi}` : `/img/YedekParca/${resimAdi}`;
                 const isAvailable = stok.toLowerCase() === 'var';
                 const stokMetni = isAvailable ? 'Stokta Var' : 'Stokta Yok';
                 const stokClass = isAvailable ? 'in-stock' : 'out-of-stock';
@@ -38,7 +38,7 @@ async function yedekParcalariYukle() {
                 targetGrid.innerHTML += `
     <div class="part-item" data-category="${temizID}">
         <div class="part-img">
-            <img src="${resimYolu}" alt="${isim}" onerror="this.src='img/placeholder.jpg'" onclick="openLightbox('${resimYolu}', '${isim}')">
+            <img src="${resimYolu}" alt="${isim}" onerror="this.src='/img/placeholder.jpg'" onclick="openLightbox('${resimYolu}', '${isim}')">
         </div>
         <div class="part-details">
             <h3>${isim}</h3>
