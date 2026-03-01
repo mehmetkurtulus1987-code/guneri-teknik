@@ -118,7 +118,7 @@ function toggleFields() {
     const submitBtn = document.getElementById('submitBtn');
 
     let otherOption = brandSelect.querySelector('option[value="Diger"]');
-    const markalar = { "Maktek": "0850 441 42 00", "Sanica": "0850 460 66 88", "Ariston": "444 92 31", "Hexel": "0850 346 29 29" };
+    const markalar = { "Maktek": "0850 441 42 00", "Sanica": "0850 460 66 88", "Ariston": "444 92 31", "Hexel": "0850 346 29 29", "Dizayn": "0850 290 3434" };
 
     if (warrantyGroup) warrantyGroup.style.display = 'none';
     if (brandGroup) brandGroup.style.display = 'none';
