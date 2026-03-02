@@ -158,32 +158,24 @@ function openLightbox(src, title) {
     const lb = document.getElementById('imageModal');
     const lbImg = document.getElementById('imgFull');
     const lbCap = document.getElementById('caption');
+    
     if (lb && lbImg) {
-        const scrollY = window.scrollY;
         lb.style.display = "flex";
         lbImg.src = src;
         if (lbCap) lbCap.innerText = title;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = '100%';
+        
+        // Sayfanın arkada kaymasını engelle ama konumu bozma
+        document.body.style.overflow = 'hidden'; 
     }
 }
 
 function closeLightbox() {
     const lb = document.getElementById('imageModal');
     if (lb) {
-       const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';       
         lb.style.display = "none";
-        if (scrollY) {
-            const scrollPos = parseInt(scrollY) * -1;
-            window.scrollTo({
-                top: scrollPos,
-                behavior: 'instant' 
-            });
-        }
+        
+        // Kaydırma kilidini aç
+        document.body.style.overflow = ''; 
     }
 }
 // --- 6. SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
