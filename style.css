@@ -764,16 +764,17 @@ body.page-yedekparca {
 }
 /*Whatsapp iletişimi */
 .whatsapp-link {
-    color: #25d366; /* WhatsApp yeşili */
+    color: #007bff; /* İlk hali sitendeki link mavisi veya siyah olabilir */
     font-weight: bold;
     text-decoration: none;
-    border-bottom: 1px dashed #25d366;
+    border-bottom: 1px dashed #007bff;
     transition: all 0.3s ease;
 }
 
 .whatsapp-link:hover {
-    color: #128c7e; /* Koyu WhatsApp yeşili */
-    border-bottom: 1px solid #128c7e;
+    color: #ff8c00; /* Üzerine gelince Turuncu (DarkOrange) */
+    border-bottom: 1px solid #ff8c00;
+    text-shadow: 0px 0px 1px rgba(255, 140, 0, 0.2); /* Hafif bir parlama efekti */
 }
 /* Hero Alanı */
 .part-hero {
