@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(scriptURL, { method: 'POST', body: formData });
 
             const metin = `*Güneri Teknik Web Talebi*%0A*Müşteri:* ${name}%0A*Tel:* ${phone}%0A*Cihaz:* ${selectedBrand}%0A*Hizmet:* ${service}%0A*Mesaj:* ${message}`;
-            window.open(`https://wa.me/905060357883?text=${metin}`, '_blank');
+            window.open(`https://wa.me/905376183344?text=${metin}`, '_blank');
         });
     }
 
