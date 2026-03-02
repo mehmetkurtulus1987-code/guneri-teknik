@@ -172,15 +172,20 @@ function openLightbox(src, title) {
 function closeLightbox() {
     const lb = document.getElementById('imageModal');
     if (lb) {
-        const scrollY = document.body.style.top;
+       const scrollY = document.body.style.top;
         document.body.style.position = '';
         document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        document.body.style.width = '';       
         lb.style.display = "none";
+        if (scrollY) {
+            const scrollPos = parseInt(scrollY) * -1;
+            window.scrollTo({
+                top: scrollPos,
+                behavior: 'instant' 
+            });
+        }
     }
 }
-
 // --- 6. SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
 document.addEventListener('DOMContentLoaded', () => {
     // 1. TELEFON NUMARASI KISITLAMASI (RAKAM ZORUNLULUĞU)
