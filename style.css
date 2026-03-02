@@ -762,6 +762,19 @@ body.page-yedekparca {
 #clearSearch:hover {
     color: #333;
 }
+/*Whatsapp iletişimi */
+.whatsapp-link {
+    color: #25d366; /* WhatsApp yeşili */
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px dashed #25d366;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-link:hover {
+    color: #128c7e; /* Koyu WhatsApp yeşili */
+    border-bottom: 1px solid #128c7e;
+}
 /* Hero Alanı */
 .part-hero {
     background: #f0f4f8;
