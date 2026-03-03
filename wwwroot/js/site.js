@@ -36,28 +36,32 @@ async function yedekParcalariYukle() {
                 const stokClass = isAvailable ? 'in-stock' : 'out-of-stock';
 
                 targetGrid.innerHTML += `
-    <div class="part-item" data-category="${temizID}">
-        <div class="part-img">
-            <img src="${resimYolu}" 
-                 alt="${isim} - ${marka} Kombi Yedek Parça - Güneri Teknik" 
-                 loading="lazy"
-                 onerror="this.src='/img/placeholder.jpg'" 
-                 onclick="openLightbox('${resimYolu}', '${isim}')">
-        </div>
-        <div class="part-details">
-            <h3>${isim}</h3>
-            <p class="compatible-brands">Marka: ${marka}</p>
-            <div class="part-price-row">
-                <span class="price">${fiyat}</span>
-            </div>
-            <div class="stock-info">
-                <span class="stock-status ${stokClass}">${stokMetni}</span>
-            </div>
-            <button class="order-btn" onclick="window.open('https://wa.me/905376183344?text=Merhaba, *${encodeURIComponent(isim)}* hakkında fiyat bilgisi alabilir miyim?', '_blank')">Fiyat Al</button>
-        </div>
-    </div>`;
+                <div class="part-item" data-category="${temizID}">
+                    <div class="part-img">
+                        <img src="${resimYolu}" 
+                             alt="${isim} - ${marka} Kombi Yedek Parça - Güneri Teknik" 
+                             loading="lazy"
+                             onerror="this.src='/img/placeholder.jpg'" 
+                             onclick="openLightbox('${resimYolu}', '${isim}')">
+                    </div>
+                    <div class="part-details">
+                        <h3>${isim}</h3>
+                        <p class="compatible-brands">Marka: ${marka}</p>
+                        <div class="part-price-row">
+                            <span class="price">${fiyat}</span>
+                        </div>
+                        <div class="stock-info">
+                            <span class="stock-status ${stokClass}">${stokMetni}</span>
+                        </div>
+                        <button class="order-btn" onclick="window.open('https://wa.me/905376183344?text=Merhaba, *${encodeURIComponent(isim)}* hakkında fiyat bilgisi alabilir miyim?', '_blank')">Fiyat Al</button>
+                    </div>
+                </div>`;
+            }
+        });
         updateCategoryVisibility();
-    } catch (e) { console.error("Hata:", e); }
+    } catch (e) { 
+        console.error("Hata:", e); 
+    }
 }
 
 function filterCategory(category) {
@@ -97,11 +101,17 @@ function clearInput() {
 function updateCategoryVisibility() {
     let categories = document.getElementsByClassName('part-category');
     for (let cat of categories) {
-        let visibleItems = Array.from(cat.getElementsByClassName('part-item')).some(item => item.style.display !== "none");
-        cat.style.display = visibleItems ? "block" : "none";
+        let itemsInCat = cat.getElementsByClassName('part-item');
+        let hasVisible = false;
+        for (let item of itemsInCat) {
+            if (item.style.display !== "none") {
+                hasVisible = true;
+                break;
+            }
+        }
+        cat.style.display = hasVisible ? "block" : "none";
     }
 }
-
 // --- 4. İLETİŞİM SAYFASI MANTIĞI ---
 function toggleFields() {
     const serviceSelect = document.getElementById('serviceSelect');
