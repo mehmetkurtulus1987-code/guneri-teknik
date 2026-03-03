@@ -38,7 +38,12 @@ async function yedekParcalariYukle() {
                 targetGrid.innerHTML += `
     <div class="part-item" data-category="${temizID}">
         <div class="part-img">
-            <img src="${resimYolu}" alt="${isim}" onerror="this.src='/img/placeholder.jpg'" onclick="openLightbox('${resimYolu}', '${isim}')">
+            <img src="${resimYolu}" 
+                 alt="${isim} - ${marka} Kombi Yedek Parça - Güneri Teknik Menemen" 
+                 title="${isim} (${marka})"
+                 loading="lazy"
+                 onerror="this.src='/img/placeholder.jpg'" 
+                 onclick="openLightbox('${resimYolu}', '${isim}')">
         </div>
         <div class="part-details">
             <h3>${isim}</h3>
@@ -52,8 +57,6 @@ async function yedekParcalariYukle() {
             <button class="order-btn" onclick="window.open('https://wa.me/905376183344?text=Merhaba, *${encodeURIComponent(isim)}* hakkında fiyat bilgisi alabilir miyim?', '_blank')">Fiyat Al</button>
         </div>
     </div>`;
-            }
-        });
         updateCategoryVisibility();
     } catch (e) { console.error("Hata:", e); }
 }
