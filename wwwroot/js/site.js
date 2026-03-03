@@ -39,8 +39,7 @@ async function yedekParcalariYukle() {
     <div class="part-item" data-category="${temizID}">
         <div class="part-img">
             <img src="${resimYolu}" 
-                 alt="${isim} - ${marka} Kombi Yedek Parça - Güneri Teknik Menemen" 
-                 title="${isim} (${marka})"
+                 alt="${isim} - ${marka} Kombi Yedek Parça - Güneri Teknik" 
                  loading="lazy"
                  onerror="this.src='/img/placeholder.jpg'" 
                  onclick="openLightbox('${resimYolu}', '${isim}')">
