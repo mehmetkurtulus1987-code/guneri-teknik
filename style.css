@@ -1178,6 +1178,25 @@ body.page-yedekparca {
 .call-btn:hover {
     background-color: #ff8f00;
 }
+/*servis not kısmı */
+.service-notice {
+    text-align: center;      /* Metni yatayda ortalar */
+    padding: 30px 20px;      /* Üstten ve alttan boşluk bırakır */
+    background-color: #fff;  /* Arka plan rengi (isteğe göre #f9f9f9 olabilir) */
+    max-width: 900px;        /* Metnin çok fazla yayılmasını engeller */
+    margin: 0 auto;          /* Bloğu sayfanın ortasına hizalar */
+}
+
+.service-notice p {
+    font-size: 1.2rem;       /* Yazıyı biraz büyütür, daha okunabilir yapar */
+    line-height: 1.6;        /* Satır aralığını açar */
+    color: #333;             /* Yazı rengini yumuşatır */
+    margin: 0;
+}
+
+.service-notice strong {
+    color: #e41e26;          /* Şehir isimlerini kırmızı (veya marka rengin) yaparak vurgular */
+}
 
 /* Harita Alanı */
 .map-container {
