@@ -1,0 +1,233 @@
+/* ============================================================
+   GÜNERİ TEKNİK - İLETİŞİM CSS (GÜNCEL TAM DOSYA)
+   ============================================================ */
+
+:root {
+    --primary-red: #c0392b;
+    --dark-navy: #2c3e50;
+    --light-bg: #f8f9fa;
+}
+
+/* 1. Genel Yapı */
+.contact-main {
+    padding: 60px 0;
+    background: var(--light-bg);
+}
+
+/* Ana Grid Sistemi */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* 2. Sol Kolon (Bilgiler) */
+.contact-info h2 {
+    color: var(--dark-navy);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.info-list {
+    margin-top: 30px;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.info-card i {
+    font-size: 24px;
+    color: var(--primary-red);
+}
+
+.info-card h4 {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.info-card a, .info-card p {
+    font-weight: 600;
+    color: var(--dark-navy);
+    text-decoration: none;
+}
+
+/* 3. Sağ Kolon (Form Kartı) */
+.contact-form-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box; /* Taşmayı önleyen en kritik kod */
+}
+
+input:focus, select:focus {
+    border-color: var(--dark-navy);
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--dark-navy);
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: var(--primary-red);
+    transform: translateY(-3px);
+}
+
+/* 4. Hizmet Bölgeleri */
+.service-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    background: #fff;
+    margin-top: 20px;
+}
+
+.service-areas-grid div {
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--light-bg);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.service-areas-grid div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 5. Alt Bölümler */
+.service-notice {
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    margin: 50px 0;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-red);
+}
+
+.map-section {
+    line-height: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.map-section iframe {
+    width: 100%;
+    border: 0;
+}
+
+/* ============================================================
+   MOBİL UYUMLULUK (Tam Düzeltme)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* Topbar WhatsApp Düzeltme */
+    .top-bar .container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 0 15px;
+    }
+
+    /* Grid'den Flex'e geçiş (Taşmayı bitirir) */
+    .contact-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px;
+    }
+
+    /* Tüm genişlikleri zorla */
+    .contact-info, .contact-form-card, .contact-main .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 15px;
+    }
+
+    /* Sağa fırlayan formu resetle */
+    .contact-form-card {
+        position: relative !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+        padding: 25px 20px !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+    }
+
+    /* Başlık ve Kartlar */
+    .contact-info {
+        text-align: center;
+    }
+
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr; /* Ad-Soyad alt alta */
+    }
+
+    /* Form Zoom Engelleme */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+
+    /* Harita Yüksekliği */
+    .map-section iframe {
+        height: 300px;
+    }
+
+    /* Nav Menü */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+}

@@ -2,29 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://guneriteknik.com/</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://guneriteknik.com/yedekparca</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://guneriteknik.com/hakkimizda/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hizmetler/</loc>
+    <lastmod>2026-03-10</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://guneriteknik.com/urunlerimiz</loc>
-    <lastmod>2026-03-01</lastmod>
+    <loc>https://guneriteknik.com/urunler/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/blog/</loc>
+    <lastmod>2026-03-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guneriteknik.com/hakkimizda</loc>
-    <lastmod>2026-03-01</lastmod>
-    <priority>0.5</priority>
+    <loc>https://guneriteknik.com/iletisim/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://guneriteknik.com/hizmet-bolgelerimiz/menemen/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guneriteknik.com/iletisim</loc>
-    <lastmod>2026-03-01</lastmod>
+    <loc>https://guneriteknik.com/hizmet-bolgelerimiz/aliaga/</loc>
+    <lastmod>2026-03-10</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hizmet-bolgelerimiz/foca/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://guneriteknik.com/hata-kodlari/ariston/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hata-kodlari/dizayn/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hata-kodlari/hexel/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hata-kodlari/maktek/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://guneriteknik.com/hata-kodlari/sanica/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

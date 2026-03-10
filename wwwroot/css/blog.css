@@ -1,0 +1,330 @@
+.blog-section { padding: 60px 0; background: #fdfdfd; }
+.page-title { text-align: center; font-size: 36px; color: #2c3e50; }
+.page-subtitle { text-align: center; color: #7f8c8d; margin-bottom: 50px; }
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* --- BLOG KARTLARI STANDART DÜZENİ --- */
+.blog-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    height: 100%; /* Tüm kart boylarını eşitler */
+}
+
+    /* Resim Alanı: Tüm kartlarda yüksekliği 280px veya 300px yapabilirsin */
+    .blog-card .blog-img {
+        width: 100% !important;
+        height: 300px !important;
+        overflow: hidden !important;
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+        /* Resim Ayarı: Kombi dahil tüm resimleri merkeze odaklar ve sığdırır */
+        .blog-card .blog-img img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            transition: transform 0.5s ease;
+        }
+
+    /* Üzerine gelince resim büyüme efekti */
+    .blog-card:hover .blog-img img {
+        transform: scale(1.1);
+    }
+.blog-content {
+    padding: 25px;
+    flex-grow: 1; /* İçerik az olsa bile kartın boyunu korur */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category { 
+    background: #e74c3c; color: #fff; padding: 5px 12px; 
+    border-radius: 20px; font-size: 12px; font-weight: bold;
+}
+
+.blog-content h3 { margin: 15px 0; font-size: 20px; color: #333; }
+.blog-content p { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+
+.read-more { color: #e74c3c; font-weight: bold; text-decoration: none; }
+.blog-cta {
+    background: #2c3e50;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 40px;
+}
+.btn-call-small {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.blog-details {
+    display: none;
+    overflow: hidden;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9; /* Hafif gri arka plan ile ana karttan ayırdık */
+    border-left: 4px solid #e74c3c; /* Sol tarafa kırmızı bir vurgu çizgisi */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #444;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Açılış animasyonu (daha yumuşak bir geçiş için) */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blog-details h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    /* Başlığın yanına otomatik bir ikon ekleyelim (Opsiyonel) */
+    .blog-details h4::before {
+        content: '🔍';
+        font-size: 14px;
+    }
+
+.blog-details ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.blog-details li {
+    list-style: none;
+    position: relative;
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+    /* Liste maddelerinin başına küçük oklar ekleyelim */
+    .blog-details li::before {
+        content: '→';
+        color: #e74c3c;
+        position: absolute;
+        left: -15px;
+        font-weight: bold;
+    }
+
+.read-more-btn {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    color: #e74c3c;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: fit-content;
+    transition: 0.3s;
+}
+
+    .read-more-btn:hover {
+        background: #e74c3c;
+        color: #fff;
+    }
+.blog-footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+}
+.blog-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: #888;
+}
+
+    .blog-meta i {
+        color: #e74c3c; /* İkonlar kurumsal renginde olsun */
+        margin-right: 4px;
+    }
+.share-wa {
+    color: #25D366; /* WhatsApp yeşili */
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+    .share-wa:hover {
+        color: #128C7E; /* Hoverda koyu yeşil */
+        transform: scale(1.05);
+    }
+/* ============================================================
+   BLOG MOBİL UYUMLULUK (max-width: 768px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* 1. Başlık ve Alt Başlık Ayarları */
+    .page-title {
+        font-size: 28px;
+        padding: 0 15px;
+    }
+
+    .page-subtitle {
+        font-size: 15px;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    /* 2. Grid Yapısını Tek Sütuna Düşür */
+    .blog-grid {
+        grid-template-columns: 1fr; /* Kartları alt alta dizer */
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    /* 3. Kart Resim Yüksekliğini Mobilde Optimize Et */
+    .blog-card .blog-img {
+        height: 220px !important; /* Mobilde çok yer kaplamaması için boyu kısalttık */
+    }
+
+    /* 4. Blog İçerik Alanı */
+    .blog-content {
+        padding: 20px;
+        text-align: center; /* Mobilde metinleri ortalamak daha şık durabilir */
+    }
+
+        .blog-content h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .blog-content p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+    /* 5. Kategori Etiketi Konumu */
+    .category {
+        display: inline-block;
+        margin: 0 auto;
+        width: fit-content;
+    }
+
+    /* 6. Blog Altındaki Çağrı (CTA) Alanı */
+    .blog-cta {
+        margin: 30px 15px 0 15px;
+        padding: 25px 15px;
+    }
+
+        .blog-cta h3 {
+            font-size: 20px;
+        }
+
+    .btn-call-small {
+        width: 100%; /* Mobilde butonun kolay basılması için tam genişlik */
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .nav-menu {
+        display: none; /* Veya transform: translateX(100%); */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000;
+    }
+
+        /* JavaScript tıklandığında bu sınıfı ekleyecek */
+        .nav-menu.active {
+            display: flex;
+        }
+
+    .menu-toggle {
+        display: block; /* Sadece mobilde görünsün */
+        font-size: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Masaüstünde butonu gizle */
+    @media (min-width: 769px) {
+        .menu-toggle {
+            display: none;
+        }
+    }
+    /* 7. Yeni Eklenen Meta Bilgileri (Tarih ve Saat) */
+    .blog-meta {
+        justify-content: center; /* Mobilde tarih ve okuma süresini ortala */
+        margin-bottom: 10px;
+    }
+    .blog-footer-meta {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    /* 8. Açılır Detay Alanı Düzenlemesi */
+    .blog-details {
+        text-align: left; /* Okunaklı olması için liste içeriğini sola yaslı bırak */
+        padding: 15px;
+        font-size: 13px;
+    }
+
+    /* 9. Alt Butonlar (Detay Gör ve Paylaş) Konumu */
+    .blog-actions {
+        flex-direction: column; /* Butonları alt alta diz (Sıkışmayı önler) */
+        gap: 15px;
+        width: 100%;
+    }
+
+    .read-more-btn {
+        width: 100%; /* Mobilde daha kolay tıklanması için tam genişlik */
+        text-align: center;
+        padding: 12px;
+        border: 1px solid #e74c3c; /* Daha belirgin olsun */
+    }
+
+    .share-wa {
+        justify-content: center; /* WhatsApp ikonunu ortala */
+        width: 100%;
+        padding: 5px;
+    }
+}
