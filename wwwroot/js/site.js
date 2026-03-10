@@ -225,3 +225,24 @@ function toggleDetails(id, btn) {
         btn.textContent = "Kapat ↑";
     }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const whatsappButtons = document.querySelectorAll('.price-btn');
+    const phoneNumber = "905376183344";
+
+    whatsappButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault(); // Sayfanın üste fırlamasını engeller
+
+            // Butonun içindeki data-product değerini al
+            const productName = this.getAttribute('data-product');
+
+            // Mesajı oluştur
+            const message = `Merhaba, ${productName} hakkında fiyat almak istiyorum.`;
+
+            // WhatsApp linkini oluştur ve yönlendir
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+    });
+});

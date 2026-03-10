@@ -1191,6 +1191,22 @@ ul {
     font-size: 13px;
     border-top: 1px solid #3e4f5f;
 }
+.price-btn {
+    display: block;
+    background-color: #25d366;
+    color: white !important;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+    .price-btn:hover {
+        background-color: #128c7e;
+    }
 /* ============================================================
    MOBİL UYUMLULUK VE YAPI (max-width: 768px)
    ============================================================ */
