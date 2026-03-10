@@ -1161,16 +1161,28 @@ ul {
 .footer-social {
     margin-top: 20px;
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
     .footer-social a {
-        width: 45px; 
-        height: 45px; 
-        margin: 5px; 
-        font-size: 18px; 
+        background: transparent !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 5px;
+        font-size: 24px;
+        transition: transform 0.3s ease;
     }
+        .footer-social a .fa-facebook,
+        .footer-social a .fa-facebook-f {
+            color: #1877F2 !important;
+        }
+        .footer-social a .fa-instagram {
+            color: #E4405F !important; 
+        }
+        .footer-social a .fa-whatsapp {
+            color: #25D366 !important; 
+        }
         .footer-social a:hover {
-            background: #FF0000;
+            transform: translateY(-3px) scale(1.1);
         }
 .footer-bottom {
     background: #1a252f;
