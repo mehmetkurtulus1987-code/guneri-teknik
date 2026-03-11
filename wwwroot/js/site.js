@@ -2,12 +2,7 @@
    GÜNERİ TEKNİK - TÜMÜ BİR ARADA (2026)
    ============================================================ */
 
-// --- 1. GÜVENLİK AYARLARI (Kopyalama Engelleme) ---
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.onkeydown = function (e) {
-    if (e.ctrlKey && [67, 86, 85, 83].includes(e.keyCode)) return false;
-    if (e.keyCode === 123) return false;
-};
+
 
 // --- 2. DİNAMİK ALANLARI GÖSTER/GİZLE ---
 function toggleFields() {
