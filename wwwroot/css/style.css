@@ -1232,7 +1232,7 @@ ul {
         z-index: 1000; /* Header genel olarak üstte kalsın */
         background: #fff;
     }
-    nav-wrapper {
+    .nav-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
