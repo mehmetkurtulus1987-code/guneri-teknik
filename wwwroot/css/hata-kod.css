@@ -264,7 +264,7 @@
     @media (max-width: 768px) {  
     .main-error-codes {
         background-attachment: scroll; /* Mobilde 'fixed' özelliği bazı cihazlarda kasma yapabilir */
-        background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+        background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
                           url('/img/whitegreenartichoke-36251353.webp');
     }      
         .error-hero {
