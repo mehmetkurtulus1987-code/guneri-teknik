@@ -3,9 +3,7 @@
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center;
     color: white;
-    text-align: center;
 }
 .logo {
     font-size: 22px;
