@@ -1,5 +1,5 @@
  main{
-    background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
                       url('../../img/whitegreenartichoke-36251353.webp');
     background-attachment: fixed; 
     background-position: center;
@@ -261,7 +261,12 @@
    HATA KODLARI SAYFASI MOBİL UYUMLULUK (max-width: 768px)
    ============================================================ */
 
-    @media (max-width: 768px) {        
+    @media (max-width: 768px) {  
+    main {
+        background-attachment: scroll; /* Mobilde 'fixed' özelliği bazı cihazlarda kasma yapabilir */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                          url('/img/whitegreenartichoke-36251353.webp');
+    }      
         .error-hero {
             padding: 50px 0;
             margin-bottom: 30px;
