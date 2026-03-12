@@ -1,9 +1,11 @@
 .main-error-codes{
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('/img/whitegreenartichoke-36251353.webp');
-    background-size: cover;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+                      url('/img/whitegreenartichoke-36251353.webp');
+    background-attachment: fixed; /* Sayfa kayarken resim sabit kalır, derinlik katar */
     background-position: center;
-    display: flex;
-    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 .logo {
     font-size: 22px;
