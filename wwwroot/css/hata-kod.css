@@ -1,4 +1,4 @@
- main{
+ .main-error.codes{
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
                       url('../../img/whitegreenartichoke-36251353.webp');
     background-attachment: fixed; 
@@ -262,7 +262,7 @@
    ============================================================ */
 
     @media (max-width: 768px) {  
-    main {
+    .main-error-codes {
         background-attachment: scroll; /* Mobilde 'fixed' özelliği bazı cihazlarda kasma yapabilir */
         background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
                           url('/img/whitegreenartichoke-36251353.webp');
