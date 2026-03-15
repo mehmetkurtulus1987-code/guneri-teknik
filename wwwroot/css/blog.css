@@ -178,11 +178,13 @@
         margin-right: 4px;
     }
 .share-wa {
-    color: #25D366; /* WhatsApp yeşili */
+    color: #25D366; 
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    display: flex;
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     align-items: center;
     gap: 5px;
     transition: 0.3s;
