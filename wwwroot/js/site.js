@@ -153,32 +153,134 @@ async function yedekParcalariYukle() {
     try {
         const response = await fetch(sheetURL);
         const data = await response.text();
-        const rows = data.split(/\r?\n/).slice(1);
+        const rows = data.split(/\r?\n/).filter(row => row.trim() !== "").slice(1);
         const grids = document.querySelectorAll('.parts-grid');
         grids.forEach(g => g.innerHTML = '');
 
         rows.forEach((row) => {
             const cols = row.split(/[;,]/);
             if (cols.length < 7) return;
+
             const [isim, marka, klasor, kategoriID, fiyat, stok, resimAdi] = cols.map(c => c.trim().replace(/"/g, ''));
             const temizID = kategoriID.toLowerCase().replace(/\s/g, '');
             const targetGrid = document.querySelector(`#cat-${temizID} .parts-grid`);
 
-            if (targetGrid) {
+            if (targetGrid) {                
                 const resimYolu = (klasor && klasor !== "") ? `../img/YedekParca/${klasor}/${resimAdi}` : `../img/YedekParca/${resimAdi}`;
+
+                const isAvailable = stok.toLowerCase() === 'var';
                 targetGrid.innerHTML += `
-                <div class="part-item">
-                    <div class="part-img"><img src="${resimYolu}" alt="${isim}" onerror="this.src='../img/placeholder.jpg'"></div>
-                    <div class="part-details">
-                        <h3>${isim}</h3>
-                        <p>Marka: ${marka}</p>
-                        <span class="price">${fiyat}</span>
-                        <button class="order-btn" onclick="window.open('https://wa.me/905376183344?text=${encodeURIComponent(isim)} için fiyat almak istiyorum', '_blank')">Fiyat Al</button>
+                <div class="product-card" data-name="${isim.toLowerCase()}" data-brand="${marka.toLowerCase()}">
+                    <div class="product-image-container">
+                        <button type="button" class="img-zoom-btn" onclick="openLightbox('${resimYolu}')" aria-label="${isim} resmini büyüt">
+                <img src="${resimYolu}" alt="${isim}" class="product-img" onerror="this.src='../img/placeholder.jpg'">
+                         </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-badge">${marka}</div>
+                        <h3 class="product-title">${isim}</h3>
+                        <div class="product-meta">
+                            <span class="stock-status ${isAvailable ? 'in-stock' : 'out-stock'}">
+                                <strong>Stok Durumu:</strong> <i class="fas ${isAvailable ? 'fa-check-circle' : 'fa-times-circle'}"></i> ${stok.toUpperCase()}
+                            </span>
+                        </div>
+                        <div class="price-action-row">
+                            <span class="price-text">${fiyat}</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/905376183344?text=${encodeURIComponent(isim)} hakkında bilgi almak istiyorum', '_blank')">
+                                <i class="fab fa-whatsapp"></i> Fiyat Al
+                            </button>
+                        </div>
                     </div>
                 </div>`;
             }
         });
     } catch (e) { console.error(e); }
+}
+
+// --- ARAMA FONKSİYONU (X Butonu Düzeltildi) ---
+function searchParts() {
+    const input = document.getElementById('partSearch');
+    const clearBtn = document.getElementById('clearSearch');
+    const noResults = document.getElementById('noResults');
+    const filter = input.value.toLowerCase();
+
+    // Tüm ürün kartlarını al
+    const cards = document.querySelectorAll('.product-card');
+    // Tüm kategori bölümlerini al (HTML'de kategori div'lerine 'part-category' sınıfı verdiğini varsayıyorum)
+    const sections = document.querySelectorAll('.part-category');
+
+    let totalVisibleCount = 0;
+
+    // X butonu kontrolü
+    if (clearBtn) {
+        clearBtn.style.display = input.value.length > 0 ? "flex" : "none";
+    }
+
+    // Her kategoriyi kendi içinde tara
+    sections.forEach(section => {
+        const sectionCards = section.querySelectorAll('.product-card');
+        let sectionVisibleCount = 0;
+
+        sectionCards.forEach(card => {
+            const name = card.getAttribute('data-name') || "";
+            const brand = card.getAttribute('data-brand') || "";
+
+            if (name.includes(filter) || brand.includes(filter)) {
+                card.style.display = "flex";
+                sectionVisibleCount++;
+                totalVisibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        // Eğer kategoride hiç görünür ürün yoksa, başlığıyla beraber kategoriyi gizle
+        if (sectionVisibleCount === 0 && filter.length > 0) {
+            section.style.display = "none";
+        } else {
+            section.style.display = "block";
+        }
+    });
+
+    // "Bulunamadı" uyarısını göster/gizle
+    if (noResults) {
+        if (totalVisibleCount === 0 && filter.length > 0) {
+            noResults.style.display = "block";
+        } else {
+            noResults.style.display = "none";
+        }
+    }
+}
+function clearInput() {
+    const input = document.getElementById('partSearch');
+    const clearBtn = document.getElementById('clearSearch');
+
+    input.value = ""; // Kutuyu temizle
+    clearBtn.style.display = "none"; // X butonunu gizle
+    searchParts(); // Listeyi tekrar eski haline getir (hepsini göster)
+    input.focus(); // İmleci tekrar kutuya odakla
+}
+
+// --- FİLTRELEME FONKSİYONU ---
+function filterCategory(catId) {
+    const sections = document.querySelectorAll('.part-category');
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    // Buton aktiflik durumunu değiştir
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    sections.forEach(section => {
+        if (catId === 'all') {
+            section.style.display = "block";
+        } else {
+            if (section.id === `cat-${catId}`) {
+                section.style.display = "block";
+            } else {
+                section.style.display = "none";
+            }
+        }
+    });
 }
 // MOBIL MENÜ TOGGLE
 document.addEventListener('DOMContentLoaded', function () {
@@ -214,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function toggleDetails(id, btn) {
     const details = document.getElementById(id);
     
-    // Mevcut durumun tam tersini yap
+    
     if (details.style.display === "block") {
         details.style.display = "none";
         btn.textContent = "Detayları Gör ↓";
@@ -229,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     whatsappButtons.forEach(button => {
         button.addEventListener('click', function (e) {
-            e.preventDefault(); // Sayfanın üste fırlamasını engeller
+            e.preventDefault();
 
             // Butonun içindeki data-product değerini al
             const productName = this.getAttribute('data-product');
@@ -244,3 +346,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+function openLightbox(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('fullImage');
+    const wrapper = document.getElementById('modalWrapper');
+
+    if (modal && modalImg) {
+        modal.style.display = "flex";
+        modalImg.src = src;
+
+        // ESC tuşu ile kapatma desteği
+        document.addEventListener('keydown', handleEsc);
+
+        // Boşluğa tıklayınca kapatma (HTML içinde onclick yazmadan)
+        wrapper.onclick = function () {
+            closeLightbox();
+        };
+    }
+}
+function closeLightbox() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.style.display = "none";
+        document.removeEventListener('keydown', handleEsc);
+    }
+}
+
+function handleEsc(e) {
+    if (e.key === "Escape") closeLightbox();
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güneri Teknik - Menemen Kombi ve Yedek Parça</title>
+    <meta name="description" content="Hexel, Dizayn, Sanica, Maktek ve Ariston kombi modelleri, orijinal yedek parçalar ve ürünlerimizi inceleyin. Uygun fiyat ve yetkili servis güvencesi.">
+    <link rel="canonical" href="https://guneriteknik.com/yedekparca/">
+    <link rel="icon" type="image/webp" href="https://guneriteknik.com/img/logo/guneri-teknik.webp" class="g-icon" alt="Google">
+    <link rel="stylesheet" href="/wwwroot/css/style.css">
+    <link rel="stylesheet" href="/wwwroot/css/yedekparca.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guneriteknik.com/yedekparca/">
+    <meta property="og:title" content="Ürün Kataloğu | Güneri Teknik">
+    <meta property="og:description" content="Kombi, Katı Yakıtlı Kazan ve Orijinal Yedek Parça Ürünlerimiz.">
+    <meta property="og:image" content="https://guneriteknik.com/img/logo/guneri-teknik.webp">
+</head>
+<body class="page-product">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Esatpaşa,1. Abdi İpekçi Gç. No:15 Menemen, İzmir</span>
+                <a href="tel:+905376183344"><i class="fas fa-phone"></i> +90 537 618 33 44 </a>
+                <a href="mailto:info@guneriteknik.com"><i class="fas fa-envelope"></i> info@guneriteknik.com</a>
+            </div>
+            <div class="social-info">
+                <a href="https://wa.me/905376183344" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> WhatsApp Destek</a>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <nav class="container nav-wrapper">
+            <div class="logo">
+                <a href="/">
+                    <img src="../img/logo/guneri-teknik.webp" width="200" height="80" alt="Güneri Teknik Logo">
+                    <strong>GÜNERİ TEKNİK</strong>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/hakkimizda/">Hakkımızda</a></li>
+                <li><a href="/hizmetler/">Hizmetlerimiz</a></li>
+                <li><a href="/urunler/" class="active">Ürünler</a></li>
+                <li><a href="/hata-kodlari/">Hata Kodları</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/iletisim/">İletişim</a></li>
+            </ul>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+    <main class="main-yedekparca">
+        <section class="part-hero">
+            <div class="container">
+                <h1>ORİJİNAL YEDEK PARÇA</h1>
+                <p class="hero-subtext">Maktek, Sanica, Dizayn, Hexel ve Ariston yetkili servis güvencesiyle %100 orijinal ve garantili parça desteği.</p>
+            </div>
+        </section>
+        <section class="control-panel">
+            <div class="container">
+                <div class="search-wrapper">
+                    <div class="search-box">
+                        <input type="text" id="partSearch" placeholder="Parça adı veya model yazın..." onkeyup="searchParts()">
+                        <button type="button" id="clearSearch" class="clear-btn" onclick="clearInput()" aria-label="Aramayı temizle" style="display: none;">
+                            &times;
+                        </button>
+                        <button type="button" class="search-submit"><i class="fas fa-search"></i></button>
+                    </div>
+                    <p class="search-hint">
+                        Aradığınızı bulamazsanız <a href="https://wa.me/905376183344" target="_blank">WhatsApp Hattımızla</a> iletişime geçin.
+                    </p>
+                </div>
+                <div class="filter-group">
+                    <button class="filter-btn active" onclick="filterCategory('all')">Tümü</button>
+                    <button class="filter-btn" onclick="filterCategory('sensor')">Sensörler</button>
+                    <button class="filter-btn" onclick="filterCategory('motor')">Vana Motorları</button>
+                    <button class="filter-btn" onclick="filterCategory('atesleme')">Ateşleme & Fan</button>
+                    <button class="filter-btn" onclick="filterCategory('sugrubu')">Su Grubu & Pompa</button>
+                    <button class="filter-btn" onclick="filterCategory('tamir')">Tamir Takımları</button>
+                </div>
+            </div>
+        </section>
+        <div class="container parts-container">
+            <section class="part-category" id="cat-motor">
+                <h2 class="category-title"><i class="fas fa-cogs"></i> Vana Motorları</h2>
+                <div class="parts-grid"></div>
+            </section>
+
+            <section class="part-category" id="cat-sugrubu">
+                <h2 class="category-title"><i class="fas fa-tint"></i> Su Grubu & Pompa</h2>
+                <div class="parts-grid"></div>
+            </section>
+            <section class="part-category" id="cat-atesleme">
+                <h2 class="category-title"><i class="fa-solid fa-fire-flame-curved"></i> Ateşleme & Fan Grubu</h2>
+                <div class="parts-grid"></div>
+            </section>
+            <section class="part-category" id="cat-sensor">
+                <h2 class="category-title"><i class="fa-solid fa-plug"></i> Sensör & Ölçüm Grubu</h2>
+                <div class="parts-grid"></div>
+            </section>
+            <section class="part-category" id="cat-tamir">
+                <h2 class="category-title"><i class="fa-solid fa-screwdriver-wrench"></i> Tamir Takımları</h2>
+                <div class="parts-grid"></div>
+            </section>
+        </div>
+        <div id="noResults" class="no-results-message" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>Aradığınız kriterlere uygun parça bulunamadı.</p>
+            <span>Farklı bir anahtar kelime deneyebilir veya bizimle iletişime geçebilirsiniz.</span>
+            <br>
+            <a href="https://wa.me/905376183344" class="whatsapp-hint-btn">WhatsApp'tan Sor</a>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <strong>GÜNERİ TEKNİK</strong>
+                </div>
+                <p>İzmir'in kuzeyinde 24 yıllık tecrübemizle, profesyonel kombi tamiri, bakımı ve petek temizliği hizmetleri sunuyoruz. %100 müşteri memnuniyeti ve yaptığımız işe garanti.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905376183344"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Hızlı Menü</h4>
+                <ul>
+                    <li><a href="/">Anasayfa</a></li>
+                    <li><a href="/hakkimizda/">Hakkımızda</a></li>
+                    <li><a href="/hizmetler/">Hizmetlerimiz</a></li>
+                    <li><a href="/urunler/" class="active">Ürünler</a></li>
+                    <li><a href="/hata-kodlari/">Hata Kodları</a></li>
+                    <li><a href="/blog/">Bilgi Rehberi</a></li>
+                    <li><a href="/iletisim/">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>İletişim Detayları</h4>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span><a href="tel:+905376183344">0537 618 33 44</a></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@guneriteknik.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Menemen, İzmir / Türkiye</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>7/24 Acil Servis Desteği</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Kombi Teknik Servis. Tüm Hakları Saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="imageModal" class="img-modal" role="dialog" aria-modal="true">
+        <button type="button" class="close-modal" onclick="closeLightbox()" aria-label="Kapat">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="modal-content-wrapper" id="modalWrapper">
+            <img class="modal-content" id="fullImage" alt="Ürün detay resmi">
+        </div>
+    </div>
+    <script src="../wwwroot/js/site.js"></script>
+</body>
+</html>
