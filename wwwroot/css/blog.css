@@ -179,7 +179,7 @@
         color: #e74c3c; /* İkonlar kurumsal renginde olsun */
         margin-right: 4px;
     }
-.share-wa {
+.bl-item-lnk {
     color: #25D366; 
     font-size: 14px;
     font-weight: 600;
@@ -192,7 +192,7 @@
     transition: 0.3s;
 }
 
-    .share-wa:hover {
+    .bl-item-lnk:hover {
         color: #128C7E; /* Hoverda koyu yeşil */
         transform: scale(1.05);
     }
@@ -326,7 +326,7 @@
         border: 1px solid #e74c3c; /* Daha belirgin olsun */
     }
 
-    .share-wa {
+    .bl-item-lnk {
         justify-content: center; /* WhatsApp ikonunu ortala */
         width: 100%;
         padding: 5px;
