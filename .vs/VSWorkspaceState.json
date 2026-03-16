@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\blog",
-    "\\wwwroot",
-    "\\wwwroot\\js"
+    "\\wwwroot\\css"
   ],
-  "SelectedNode": "\\wwwroot\\js\\site.js",
+  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }

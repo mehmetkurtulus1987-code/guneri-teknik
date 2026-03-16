@@ -1189,26 +1189,26 @@ ul {
         bottom: 0;
         width: 50px;
         height: 2px;
-        background: #FF0000; /* Turuncu çizgi kırmızı oldu */
+        background: #FF0000; 
     }
 .footer-col ul li {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
     .footer-col ul li a {
         color: #bdc3c7;
         transition: 0.3s;
     }
         .footer-col ul li a:hover {
-            color: #FF0000; /* Hover turuncu yerine kırmızı oldu */
+            color: #FF0000; 
             padding-left: 5px;
         }
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 10px;
+    margin-bottom: 5px;
     font-size: 14px;
-    padding: 10px 0;
+    padding: 5px 0;
 }
     .contact-item i {
         color: #FF0000;
