@@ -186,8 +186,8 @@ async function yedekParcalariYukle() {
                         </div>
                         <div class="price-action-row">
                             <span class="price-text">${fiyat}</span>
-                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/905376183344?text=${encodeURIComponent(isim)} hakkında bilgi almak istiyorum', '_blank')">
-                                <i class="fab fa-whatsapp"></i> Fiyat Al
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/905376183344?text=${encodeURIComponent(isim)} hakkında stok ve fiyat bilgisi almak istiyorum', '_blank')">
+                                <i class="fab fa-whatsapp"></i> Fiyat/Stok Sorgula
                             </button>
                         </div>
                     </div>

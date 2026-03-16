@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\blog",
-    "\\wwwroot\\js",
-    "\\yedekparca"
+    "\\wwwroot",
+    "\\wwwroot\\js"
   ],
-  "SelectedNode": "\\yedekparca\\index.html",
+  "SelectedNode": "\\wwwroot\\js\\site.js",
   "PreviewInSolutionExplorer": false
 }
