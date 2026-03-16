@@ -1312,13 +1312,15 @@ ul {
         display: none; /* JS ile active olana kadar gizli */
         flex-direction: column;
         position: absolute;
-        top: 70px; /* Header yüksekliği kadar aşağıdan başlasın */
-        left: 0;
-        width: 100%;
+        top: 65px; 
+        right:15px;
+        left: auto;
+        width: 180px;
         background: #ffffff;
         z-index: 999; /* Logonun z-index değerinden (1000) düşük olmalı */
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        padding: 20px 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 10px 0;
     }
         /* JavaScript tıklandığında menüyü içeri sürükler */
         .nav-menu.active {
@@ -1327,15 +1329,18 @@ ul {
         .nav-menu li {
             width: 100%;
             text-align: center;
-            margin: 5px 0;
+            margin: 0;
         }
             .nav-menu li a {
                 display: block;
-                padding: 12px 20px;
-                font-size: 18px;
-                border-bottom: 1px solid #f5f5f5;
-                width: 100%;
+                padding: 8px 15px;
+                font-size: 15px;
+                text-align: left;   
+                border-bottom: none;
             }
+            .nav-menu li:last-child a {
+        border-bottom: none;
+    }  
     /* 3. Hero Alanı Düzenleme */
     .hero {
         height: auto !important;
