@@ -375,8 +375,19 @@ function closeLightbox() {
 function handleEsc(e) {
     if (e.key === "Escape") closeLightbox();
 }
+const kvkkModal = document.getElementById('kvkkModal');
+
 function openKvkk() {
-    // Eğer ayrı bir sayfaya yönlendirecekseniz:
-    window.location.href = "/kvkk-aydinlatma-metni/";
-    
+    kvkkModal.showModal(); // Dialog penceresini açar
 }
+
+function closeKvkk() {
+    kvkkModal.close(); // Dialog penceresini kapatır
+}
+
+// Modal dışına tıklandığında kapanmasını istersen şu eklemeyi yapabilirsin:
+kvkkModal.addEventListener('click', (e) => {
+    if (e.target === kvkkModal) {
+        kvkkModal.close();
+    }
+});
