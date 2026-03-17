@@ -1258,69 +1258,45 @@ ul {
     font-size: 13px;
     border-top: 1px solid #3e4f5f;
 }
-.footer-kvkk-zone {
-    margin: 15px 0;
+.footer-legal-zone {
+    margin: 20px 0;
 }
-.footer-link-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
+
+.legal-title {
+    color: #ffffff;
+    font-size: 15px !important;
+    margin-bottom: 12px !important;
+    font-weight: 600;
+}
+
+.legal-pdf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.legal-pdf-list li {
+    margin-bottom: 10px;
+}
+
+.legal-pdf-list li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 13.5px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: 0.3s;
-}
-.footer-link-btn:hover {
-    border-color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
+    gap: 10px;
+    transition: all 0.3s ease;
 }
 
-/* Modal (Dialog) Tasarımı */
-.modal-dialog {
-    border: none;
-    border-radius: 15px;
-    padding: 0;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+.legal-pdf-list li a i {
+    color: #e74c3c; /* PDF ikon rengi */
+    font-size: 15px;
 }
 
-.modal-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.7); /* Arka planı karartır */
-    backdrop-filter: blur(3px); /* Arka planı bulanıklaştırır */
-}
-
-.modal-content {
-    padding: 30px;
-    position: relative;
-    background: #fff;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #eee;
-    border: none;
-    font-size: 24px;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    line-height: 1;
-}
-
-.modal-text {
-    max-height: 70vh;
-    overflow-y: auto; /* Yazı uzunsa kaydırma çubuğu çıkar */
-    margin-top: 20px;
-    line-height: 1.6;
-    font-size: 14px;
-    color: #333;
+.legal-pdf-list li a:hover {
+    color: #ffffff;
+    transform: translateX(5px); /* Hafif sağa kayma efekti */
 }
 .price-btn {
     display: block;
