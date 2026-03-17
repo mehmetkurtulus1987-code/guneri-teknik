@@ -1258,6 +1258,33 @@ ul {
     font-size: 13px;
     border-top: 1px solid #3e4f5f;
 }
+.footer-kvkk-zone {
+    margin: 15px 0;
+}
+
+.footer-link-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-link-btn i {
+    color: #e74c3c; /* Sitenizin vurgu rengi */
+}
+
+.footer-link-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #e74c3c;
+    color: #fff;
+}
 .price-btn {
     display: block;
     background-color: #25d366;

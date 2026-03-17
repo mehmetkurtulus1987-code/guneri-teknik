@@ -375,3 +375,8 @@ function closeLightbox() {
 function handleEsc(e) {
     if (e.key === "Escape") closeLightbox();
 }
+function openKvkk() {
+    // Eğer ayrı bir sayfaya yönlendirecekseniz:
+    window.location.href = "/kvkk-aydinlatma-metni/";
+    
+}

@@ -268,6 +268,11 @@
                     <strong>GÜNERİ TEKNİK</strong>
                 </div>
                 <p>İzmir'in kuzeyinde 24 yıllık tecrübemizle, profesyonel kombi tamiri, bakımı ve petek temizliği hizmetleri sunuyoruz. %100 müşteri memnuniyeti ve yaptığımız işe garanti.</p>
+                <div class="footer-kvkk-zone">
+                    <button type="button" class="footer-link-btn" onclick="openKvkk()">
+                        <i class="fas fa-file-contract"></i> KVKK Aydınlatma Metni
+                    </button>
+                </div>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -316,6 +321,26 @@
             </div>
         </div>
     </footer>
+    <dialog id="kvkkModal" class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close-btn" onclick="closeKvkk()" aria-label="Kapat">&times;</button>
+            <h2 id="modalTitle">KVKK Aydınlatma Metni</h2>
+            <div class="modal-text">
+                <p><strong>Güneri Teknik</strong> olarak kişisel verilerinizin güvenliğine önem veriyoruz.</p>
+                <p><strong>1. Veri Sorumlusu:</strong> 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, kişisel verileriniz; veri sorumlusu olarak Güneri Teknik tarafından aşağıda açıklanan kapsamda işlenebilecektir.</p>
+                <p><strong>2. İşleme Amacı:</strong> Toplanan kişisel verileriniz (İsim-soyisim, telefon, adres, cihaz marka/model bilgisi), aşağıdaki amaçlarla işlenmektedir:</p>
+                    <ul>
+                        <li><strong>Servis Hizmetlerinin Yürütülmesi:</strong> Arıza kaydı oluşturulması, yerinde servis hizmeti verilmesi ve onarım süreçlerinin tamamlanması.</li>
+                        <li><strong>Garanti Süreçlerinin Takibi:</strong>Değiştirilen yedek parçaların garanti sürelerinin takibi ve geriye dönük servis kayıtlarının tutulması.</li>
+                        <li><strong>İletişim Faaliyetleri:</strong>Randevu saatlerinin bildirilmesi, servis durumu hakkında bilgilendirme yapılması ve acil durumlarda iletişim kurulması.</li>
+                        <li><strong>Yasal Yükümlülükler:</strong>Fatura/fiş düzenlenmesi ve yetkili kurumlarca talep edilmesi durumunda hukuki yükümlülüklerin yerine getirilmesi.</li>
+                    </ul>
+                <p><strong>3. Paylaşım:</strong> Kişisel verileriniz, yukarıda belirtilen amaçların gerçekleştirilmesi doğrultusunda; yasal zorunluluklar çerçevesinde ilgili kamu kurum ve kuruluşları ile (Gerektiğinde yetkili teknik birimler veya mali müşavirlik hizmetleri) sınırlı olarak paylaşılabilir. Verileriniz asla reklam veya veri satışı amacıyla üçüncü şahıslara aktarılmaz.</p>
+                <p><strong>4. Kişisel Veri Toplamanın Yöntemi ve Hukuki Sebebi:</strong> Kişisel verileriniz, internet sitemizdeki iletişim formları, telefon görüşmeleri veya servis kaydı sırasında sözlü/yazılı olarak toplanmaktadır. Bu veriler, "Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması" ve "Veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi" hukuki sebeplerine dayanarak işlenir.</p>
+                <p><strong>5. Veri Sahibinin Hakları:</strong> KVKK’nın 11. maddesi uyarınca bize başvurarak; verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, yanlışsa düzeltilmesini isteme ve şartlar oluştuğunda silinmesini talep etme hakkına sahipsiniz.</p>
+            </div>
+        </div>
+    </dialog>
     <script src="/wwwroot/js/site.js" defer></script>
 </body>
 </html>
