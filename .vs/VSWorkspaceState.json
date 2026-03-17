@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\wwwroot\\css"
+    "\\hizmet-bolgelerimiz",
+    "\\hizmet-bolgelerimiz\\menemen"
   ],
-  "SelectedNode": "\\index.html",
+  "SelectedNode": "\\hizmet-bolgelerimiz\\menemen\\index.html",
   "PreviewInSolutionExplorer": false
 }
