@@ -349,19 +349,46 @@
             font-size: 1.4rem;
             padding: 8px 15px;
         }
-      .nav-menu {
-        display: none; 
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        padding: 0 15px;
+    }
+    .nav-menu {
+        display: none; /* JS ile active olana kadar gizli */
         flex-direction: column;
         position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        z-index: 1000;
-    }        
+        top: 65px; 
+        right:15px;
+        left: auto;
+        width: 180px;
+        background: #ffffff;
+        z-index: 999; /* Logonun z-index değerinden (1000) düşük olmalı */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 10px 0;
+    }
+        /* JavaScript tıklandığında menüyü içeri sürükler */
         .nav-menu.active {
-            display: flex;
+            display: flex !important;
         }
+        .nav-menu li {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
+            .nav-menu li a {
+                display: block;
+                padding: 8px 15px;
+                font-size: 15px;
+                text-align: left;   
+                border-bottom: none;
+            }
+            .nav-menu li:last-child a {
+        border-bottom: none;
+    }
     .menu-toggle {
         display: block; 
         font-size: 24px;
